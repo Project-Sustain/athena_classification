@@ -1,16 +1,34 @@
 {
-  "name": "athena_classification",
+  "name": "athena",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@deck.gl/react": "^8.8.12",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
+    "@deck.gl/arcgis": "^8.8.4",
+    "@deck.gl/carto": "^8.8.4",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.4.0",
+    "@octokit/core": "^3.6.0",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-map-gl": "^7.0.19",
-    "react-scripts": "5.0.1",
+    "@types/streamsaver": "^2.0.1",
+    "deck.gl": "^8.8.4",
+    "google-protobuf": "^3.19.4",
+    "grpc-web": "1.2.1",
+    "leaflet": "^1.7.1",
+    "mongodb": "^4.8.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-leaflet-choropleth": "^2.0.1",
+    "react-map-gl": "^5.3.19",
+    "react-scripts": "5.0.0",
+    "stream-to-async-iterator": "^1.0.0",
+    "streamsaver": "^2.0.5",
+    "typescript": "^4.7.4",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -38,6 +56,8 @@
     ]
   },
   "devDependencies": {
-    "@deck.gl/carto": "^8.8.12"
+    "@arcgis/core": "^4.24.7",
+    "@deck.gl/layers": "^8.8.4",
+    "react-leaflet": "^3.2.5"
   }
 }

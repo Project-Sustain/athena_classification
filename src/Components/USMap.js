@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import DeckGL from '@deck.gl/react';
-import { StaticMap } from 'react-map-gl';
-import { BASEMAP } from '@deck.gl/carto';
+import {Map} from 'react-map-gl';
+import {BASEMAP} from '@deck.gl/carto';
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -12,15 +12,14 @@ const INITIAL_VIEW_STATE = {
     bearing: 0
 };
 
-export default function Main(props) {
-
+// DeckGL react component
+export function USMap(props) {
     return (
         <DeckGL
             initialViewState={INITIAL_VIEW_STATE}
             controller={true}
-            layers={[]}
-        >
-            <StaticMap mapStyle={BASEMAP.POSITRON} />
+            layers={[]} >
+            <Map mapStyle={BASEMAP.POSITRON} />
         </DeckGL>
     );
 }
