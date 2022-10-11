@@ -1,9 +1,9 @@
-import {USMap} from "./Components/USMap";
+import Main from "./Components/Main";
 
 function App() {
   return (
       <>
-        <USMap/>
+        <Main/>
       </>
   );
 }

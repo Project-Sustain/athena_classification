@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="Add base code">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="Yeet package-lock">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/DatasetUtil.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/Download.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/DownloadUtil.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/grpc_querier.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/streamQuery.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/sustain_grpc_web_pb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/sustain_pb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/testing/sample_response.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components /Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,14 +48,26 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -55,7 +77,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664474175709</updated>
-      <workItem from="1664474179218" duration="4925000" />
+      <workItem from="1664474179218" duration="6422000" />
+      <workItem from="1665445641313" duration="5023000" />
     </task>
     <task id="LOCAL-00001" summary="testing commits">
       <created>1664559535662</created>
@@ -71,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664984674434</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Yeet package-lock">
+      <created>1664985274045</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664985274045</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,10 +117,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing commits" />
     <MESSAGE value="Add base code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add base code" />
+    <MESSAGE value="Yeet package-lock" />
+    <option name="LAST_COMMIT_MESSAGE" value="Yeet package-lock" />
   </component>
 </project>
