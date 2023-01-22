@@ -42,7 +42,7 @@ export const sample_response = {
       "recall": "0.43"
     }
   },
-  "G0100331": {
+  "G3800670": {
     "auc_of_roc": "18.34",
     "roc_graph": {
       "x_coordinates": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -85,7 +85,7 @@ export const sample_response = {
       "recall": "0.43"
     }
   },
-  "G0100332": {
+  "G3500610": {
     "auc_of_roc": "25.98",
     "roc_graph": {
       "x_coordinates": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],

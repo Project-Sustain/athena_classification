@@ -13,7 +13,7 @@ const INITIAL_VIEW_STATE = {
     longitude: -105.086559,
     latitude: 40.573733,
     zoom: 13,
-    pitch: 0,
+    pitch: 30,
     bearing: 0
 };
 
@@ -21,12 +21,15 @@ const INITIAL_VIEW_STATE = {
 export function USMap(props) {
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [clickInfo, setClickInfo] = useState({})
 
     useEffect(() => {
         (async () => {
             const geoData = await mongoQuery("county_geo_30mb", [])
             if(geoData){
-                setGeoData(geoData)
+                // Change this below filtering logic when streaming in real response
+                const filteredData = geoData.filter(x => Object.keys(sample_response).includes(x['GISJOIN']))
+                setGeoData(filteredData)
             }
             else {
                 console.log("API call failure, data unavailable");
@@ -39,7 +42,20 @@ export function USMap(props) {
     }, [geoData]);
 
 
+    const layers = [
+        new GeoJsonLayer({
+            id: 'geolayer',
+            data: geoData,
+            filled: true,
+            getLineColor:[225, 21, 20, 100],
+            getFillColor: [125, 21, 150, 100],
+            pickable: true,
+            onClick: info => setClickInfo(info)})
+    ]
+
+    console.log({clickInfo})
     console.log({geoData})
+    
     if (loading) {
         return (
             <Box >
@@ -52,7 +68,7 @@ export function USMap(props) {
             <DeckGL
                 initialViewState={INITIAL_VIEW_STATE}
                 controller={true}
-                layers={[new GeoJsonLayer({id: 'geolayer', data: geoData, filled: true, getLineColor:[225, 21, 20, 100], getFillColor: [125, 21, 150, 100]})]} >
+                layers={layers}>
                 <StaticMap mapStyle={BASEMAP.POSITRON} />
             </DeckGL>
         );
