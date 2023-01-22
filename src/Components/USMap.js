@@ -27,7 +27,9 @@ export function USMap(props) {
         (async () => {
             const geoData = await mongoQuery("county_geo_30mb", [])
             if(geoData){
-                setGeoData(geoData)
+                // Change this below filtering logic when streaming in real response
+                const filteredData = geoData.filter(x => Object.keys(sample_response).includes(x['GISJOIN']))
+                setGeoData(filteredData)
             }
             else {
                 console.log("API call failure, data unavailable");
@@ -50,10 +52,10 @@ export function USMap(props) {
             pickable: true,
             onClick: info => setClickInfo(info)})
     ]
+
     console.log({clickInfo})
-
-
     console.log({geoData})
+    
     if (loading) {
         return (
             <Box >
