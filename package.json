@@ -15,6 +15,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/streamsaver": "^2.0.1",
+    "chroma-js": "^2.4.2",
     "deck.gl": "^8.8.4",
     "google-protobuf": "^3.19.4",
     "grpc-web": "1.2.1",
