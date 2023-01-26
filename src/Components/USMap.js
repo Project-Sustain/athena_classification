@@ -5,7 +5,8 @@ import {BASEMAP} from '@deck.gl/carto';
 import {sample_response} from "../testing/sample_response";
 import {mongoQuery} from "../Utils/Download.ts";
 import {GeoJsonLayer} from "@deck.gl/layers";
-import {Paper, CircularProgress, Box, Slider} from "@mui/material";
+import {Paper, CircularProgress, Box, Slider, Switch, Typography} from "@mui/material";
+import { makeStyles } from "@material-ui/core"
 import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
 
@@ -23,6 +24,16 @@ const MS_PER_DAY = 8.64e7;
 const maxThreshold = thresholdRange[1];
 
 
+const useStyles = makeStyles({
+    root: {
+        width: 340,
+        zIndex: 5000,
+        opacity: 0.9,
+        padding: 15,
+    }
+});
+
+
 const dataFilter = new DataFilterExtension({
     filterSize: 1,
     // Enable for higher precision, e.g. 1 second granularity
@@ -31,15 +42,22 @@ const dataFilter = new DataFilterExtension({
 });
 
 const response = sample_response;
-const scale = chroma.scale(['yellow', '008ae5']).domain([0, 1]);
+const precisionScale = chroma.scale(['yellow', '008ae5']).domain([0, 1]);
+const recallScale = chroma.scale(['red', 'black']).domain([0, 1]);
+
 
 // DeckGL react component
 export function USMap(props) {
+    const classes = useStyles();
+
+
+    const [checked, setChecked] = useState(false);
     const [filter, setFilter] = useState(null);
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({})
     const [sliderValue, setSliderValue] = useState(0.9);
+    const [validationType, setValidationType] = useState("precision")
 
     const filterValue = filter || thresholdRange;
 
@@ -47,7 +65,7 @@ export function USMap(props) {
         (async () => {
             const geoData = await mongoQuery("county_geo_30mb", [])
             if(geoData){
-                // Change this below filtering logic when streaming in real response
+                // TODO: Change this below filtering logic when streaming in real response
                 let filteredData = geoData.filter(x => Object.keys(response).includes(x['GISJOIN']))
                 console.log({filteredData})
                 setGeoData(filteredData)
@@ -72,7 +90,7 @@ export function USMap(props) {
             getFillColor: d => colorByFilter(d['GISJOIN']),
 
             updateTriggers: {
-                getFillColor: sliderValue
+                getFillColor: [sliderValue, validationType]
             },
 
             getFilterValue: d => d.threshold,
@@ -92,11 +110,30 @@ export function USMap(props) {
         // TODO: Define function that find the min and max values of the data for recall
     }
 
-    // Start with threshold
+    const onChangeSwitch = (event) => {
+        setChecked(event.target.checked)
+        console.log("Inside change switch")
+        let newValidationType = 'precision'
+
+        console.log(validationType)
+        if (validationType === 'precision') {
+            console.log('made it here')
+           newValidationType = 'recall'
+        }
+        setValidationType(newValidationType)
+    }
+
     function colorByFilter(gis_join){
         const sliderValueString = sliderValue.toString();
-        const value = response[gis_join][sliderValueString]['precision'];
-        return chroma(scale(value)).rgb();
+        if (validationType === 'precision') {
+            const value = response[gis_join][sliderValueString][validationType];
+            return chroma(precisionScale(value)).rgb()
+        }
+        else{
+            const value = response[gis_join][sliderValueString][validationType];
+            return chroma(recallScale(value)).rgb()
+        }
+        return
     }
 
     if (loading) {
@@ -115,17 +152,25 @@ export function USMap(props) {
                 layers={layers}>
                 <StaticMap mapStyle={BASEMAP.POSITRON} />
             </DeckGL>
-                <Box sx={{ width: 300 }}>
-             <Slider
-                    getAriaLabel={() => 'Threshold Range'}
-                    valueLabelDisplay="auto"
-                    getAriaValueText={setSliderValue}
-                    step={0.1}
-                    marks={true}
-                    min={0.1}
-                    max={0.9}
-                />
-                </Box>
+            <div className={classes.root}>
+                <Paper elevation={3} >
+                    <Typography>Precision</Typography>
+                    <Switch>
+                        checked={checked}
+                        onChange={onChangeSwitch}
+                    </Switch>
+                    <Typography>Recall</Typography>
+                    <Slider
+                            getAriaLabel={() => 'Threshold Range'}
+                            valueLabelDisplay="auto"
+                            getAriaValueText={setSliderValue}
+                            step={0.1}
+                            marks={true}
+                            min={0.1}
+                            max={0.9}
+                     />
+                </Paper>
+            </div>
             </>
         );
     }
