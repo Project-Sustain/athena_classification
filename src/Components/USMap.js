@@ -5,7 +5,7 @@ import {BASEMAP} from '@deck.gl/carto';
 import {sample_response} from "../testing/sample_response";
 import {mongoQuery} from "../Utils/Download.ts";
 import {GeoJsonLayer} from "@deck.gl/layers";
-import {Paper, CircularProgress, Box, Slider, Switch, Typography} from "@mui/material";
+import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack} from "@mui/material";
 import { makeStyles } from "@material-ui/core"
 import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
@@ -30,6 +30,9 @@ const useStyles = makeStyles({
         zIndex: 5000,
         opacity: 0.9,
         padding: 15,
+    },
+    paper: {
+        padding: 15
     }
 });
 
@@ -50,14 +53,13 @@ const recallScale = chroma.scale(['red', 'black']).domain([0, 1]);
 export function USMap(props) {
     const classes = useStyles();
 
-
     const [checked, setChecked] = useState(false);
     const [filter, setFilter] = useState(null);
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({})
     const [sliderValue, setSliderValue] = useState(0.9);
-    const [validationType, setValidationType] = useState("precision")
+    const [validationType, setValidationType] = useState("recall")
 
     const filterValue = filter || thresholdRange;
 
@@ -110,16 +112,13 @@ export function USMap(props) {
         // TODO: Define function that find the min and max values of the data for recall
     }
 
+    const handleSliderChange = (event, newValue) => {
+        setSliderValue(newValue);
+    }
+
     const onChangeSwitch = (event) => {
         setChecked(event.target.checked)
-        console.log("Inside change switch")
-        let newValidationType = 'precision'
-
-        console.log(validationType)
-        if (validationType === 'precision') {
-            console.log('made it here')
-           newValidationType = 'recall'
-        }
+        const newValidationType = validationType === 'precision' ? 'recall' : 'precision';
         setValidationType(newValidationType)
     }
 
@@ -153,22 +152,26 @@ export function USMap(props) {
                 <StaticMap mapStyle={BASEMAP.POSITRON} />
             </DeckGL>
             <div className={classes.root}>
-                <Paper elevation={3} >
-                    <Typography>Precision</Typography>
-                    <Switch>
-                        checked={checked}
-                        onChange={onChangeSwitch}
-                    </Switch>
-                    <Typography>Recall</Typography>
-                    <Slider
-                            getAriaLabel={() => 'Threshold Range'}
-                            valueLabelDisplay="auto"
-                            getAriaValueText={setSliderValue}
+                <Paper elevation={3} className={classes.paper} >
+                    <Stack direction='column' justifyContent='center' alignItems='center'>
+                        <Typography align='center'>Threshold: {sliderValue}</Typography>
+                        <Stack direction='row' spacing={1} alignItems='center'>
+                            <Typography>Precision</Typography>
+                            <Switch
+                                checked={checked}
+                                onChange={onChangeSwitch}
+                            />
+                            <Typography>Recall</Typography>
+                        </Stack>
+                        <Slider
+                            onChange={handleSliderChange}
+                            value={sliderValue}
                             step={0.1}
                             marks={true}
                             min={0.1}
                             max={0.9}
-                     />
+                        />
+                    </Stack>
                 </Paper>
             </div>
             </>
