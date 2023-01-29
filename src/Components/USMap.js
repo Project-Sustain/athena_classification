@@ -15,7 +15,7 @@ import chroma from "chroma-js"
 const INITIAL_VIEW_STATE = {
     longitude: -105.086559,
     latitude: 40.573733,
-    zoom: 13,
+    zoom: 3.5,
     pitch: 30,
     bearing: 0
 };
@@ -54,7 +54,7 @@ export function USMap(props) {
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
-    const [sliderValue, setSliderValue] = useState(0.9);
+    const [sliderValue, setSliderValue] = useState(0.5);
     const [validationType, setValidationType] = useState("recall");
     const [displayedMetric, setDisplayedMetric] = useState("threshold");
     const [sliderValueMetric, setSliderValueMetric] = useState(0.5);
