@@ -3,9 +3,10 @@ import DeckGL from '@deck.gl/react';
 import {StaticMap} from 'react-map-gl';
 import {BASEMAP} from '@deck.gl/carto';
 import {sample_response} from "../testing/sample_response";
+import {full_response} from "../testing/full_response";
 import {mongoQuery} from "../Utils/Download.ts";
 import {GeoJsonLayer} from "@deck.gl/layers";
-import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack} from "@mui/material";
+import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import { makeStyles } from "@material-ui/core"
 import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
@@ -20,8 +21,8 @@ const INITIAL_VIEW_STATE = {
 };
 
 const thresholdRange = [0.1, 0.9];
-const MS_PER_DAY = 8.64e7;
 const maxThreshold = thresholdRange[1];
+const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
 
 
 const useStyles = makeStyles({
@@ -37,16 +38,12 @@ const useStyles = makeStyles({
 });
 
 
-const dataFilter = new DataFilterExtension({
-    filterSize: 1,
-    // Enable for higher precision, e.g. 1 second granularity
-    // See DataFilterExtension documentation for how to pick precision
-    fp64: false
-});
-
-const response = sample_response;
+const response = full_response;
 const precisionScale = chroma.scale(['yellow', '008ae5']).domain([0, 1]);
 const recallScale = chroma.scale(['red', 'black']).domain([0, 1]);
+const precisionThresholdScale = chroma.scale(['pink', 'yellow']).domain([0,1]);
+const recallThresholdScale = chroma.scale(['green', 'purple']).domain([0,1]);
+
 
 
 // DeckGL react component
@@ -54,14 +51,13 @@ export function USMap(props) {
     const classes = useStyles();
 
     const [checked, setChecked] = useState(false);
-    const [filter, setFilter] = useState(null);
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
-    const [clickInfo, setClickInfo] = useState({})
+    const [clickInfo, setClickInfo] = useState({});
     const [sliderValue, setSliderValue] = useState(0.9);
-    const [validationType, setValidationType] = useState("recall")
-
-    const filterValue = filter || thresholdRange;
+    const [validationType, setValidationType] = useState("recall");
+    const [displayedMetric, setDisplayedMetric] = useState("threshold");
+    const [sliderValueMetric, setSliderValueMetric] = useState(0.5);
 
     useEffect(() => {
         (async () => {
@@ -92,28 +88,67 @@ export function USMap(props) {
             getFillColor: d => colorByFilter(d['GISJOIN']),
 
             updateTriggers: {
-                getFillColor: [sliderValue, validationType]
+                getFillColor: [sliderValue, validationType, sliderValueMetric, displayedMetric]
             },
-
-            getFilterValue: d => d.threshold,
-            filterRange: [filterValue[0], filterValue[1]],
-            extensions: [new DataFilterExtension({filterSize: 3})],
             pickable: true,
-            onClick: info => setClickInfo(info)})
+            onClick: info => setClickInfo(info)
+        })
     ]
-
-    //The threshold is a fixed value, so just need to define that range statically.
-
-    function getPrecisionRange(data){
-        // TODO: Define function that find the min and max values of the data for precision
+    function formatMetricName(name){
+        return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
-    function getRecallRange(data){
-        // TODO: Define function that find the min and max values of the data for recall
+    function displayValdationValues(){
+        if(displayedMetric === 'threshold'){
+            return displayThreshold();
+        }
+        return displayPrecisionRecall();
+    }
+
+    function displayThreshold(){
+        return (
+            <>
+                <Typography align='center'>Threshold: {sliderValue}</Typography>
+                <Stack direction='row' spacing={1} alignItems='center'>
+                    <Typography>Recall</Typography>
+                    <Switch
+                        checked={checked}
+                        onChange={onChangeSwitch}
+                    />
+                    <Typography>Precision</Typography>
+                </Stack>
+                <Slider
+                    onChange={handleSliderChange}
+                    value={sliderValue}
+                    step={0.1}
+                    marks={true}
+                    min={0.1}
+                    max={0.9}
+                />
+            </>
+        );
+    }
+
+    function displayPrecisionRecall(){
+        return (
+            <>
+                <Typography align='center'>{formatMetricName(displayedMetric)}: {sliderValueMetric.toFixed(2)}</Typography>
+                <Slider
+                    onChange={handleSliderChangeMetric}
+                    value={sliderValueMetric}
+                    step={0.05}
+                    min={0.0}
+                    max={1.0}
+                />
+            </>
+        );
     }
 
     const handleSliderChange = (event, newValue) => {
         setSliderValue(newValue);
+    }
+    const handleSliderChangeMetric = (event, newValue) => {
+        setSliderValueMetric(newValue);
     }
 
     const onChangeSwitch = (event) => {
@@ -123,16 +158,44 @@ export function USMap(props) {
     }
 
     function colorByFilter(gis_join){
+        if (displayedMetric === 'threshold'){
+            return colorByThreshold(gis_join);
+        }
+        return colorByMetric(gis_join);
+
+    }
+
+    function colorByThreshold(gis_join){
         const sliderValueString = sliderValue.toString();
         if (validationType === 'precision') {
             const value = response[gis_join][sliderValueString][validationType];
             return chroma(precisionScale(value)).rgb()
         }
-        else{
+        else if(validationType === 'recall') {
             const value = response[gis_join][sliderValueString][validationType];
             return chroma(recallScale(value)).rgb()
         }
         return
+    }
+
+    function colorByMetric(gis_join){
+        if (displayedMetric === 'precision') {
+            for(let i = 0; i < thresholdValues.length; i++) {
+                const value = response[gis_join][thresholdValues[i]]['precision'];
+                if(value >= sliderValueMetric) {
+                    return chroma(precisionThresholdScale(parseFloat(thresholdValues[i]))).rgb();
+                }
+            }
+        }
+        else if(displayedMetric === 'recall'){
+            for(let i = 0; i < thresholdValues.length; i++) {
+                const value = response[gis_join][thresholdValues[i]]['recall'];
+                if(value <= sliderValueMetric) {
+                    return chroma(recallThresholdScale(parseFloat(thresholdValues[i]))).rgb();
+                }
+            }
+        }
+        return [0,0,0,0];
     }
 
     if (loading) {
@@ -154,23 +217,12 @@ export function USMap(props) {
             <div className={classes.root}>
                 <Paper elevation={3} className={classes.paper} >
                     <Stack direction='column' justifyContent='center' alignItems='center'>
-                        <Typography align='center'>Threshold: {sliderValue}</Typography>
-                        <Stack direction='row' spacing={1} alignItems='center'>
-                            <Typography>Precision</Typography>
-                            <Switch
-                                checked={checked}
-                                onChange={onChangeSwitch}
-                            />
-                            <Typography>Recall</Typography>
-                        </Stack>
-                        <Slider
-                            onChange={handleSliderChange}
-                            value={sliderValue}
-                            step={0.1}
-                            marks={true}
-                            min={0.1}
-                            max={0.9}
-                        />
+                        {displayValdationValues()}
+                        <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                            <Button onClick={() => { setDisplayedMetric("threshold") }} >Threshold</Button>
+                            <Button onClick={() => { setDisplayedMetric("precision") }} >Precision</Button>
+                            <Button onClick={() => { setDisplayedMetric("recall") }} >Recall</Button>
+                        </ButtonGroup>
                     </Stack>
                 </Paper>
             </div>

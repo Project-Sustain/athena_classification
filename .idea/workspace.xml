@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="switch is broken, but coloring is functional">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="it works!!">
+      <change afterPath="$PROJECT_DIR$/src/testing/full_response.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ControlPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ControlPanel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674696975798</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="it works!!">
+      <created>1674849006921</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1674849006921</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +175,7 @@
     <MESSAGE value="add pickable objects" />
     <MESSAGE value="color changing based on slider for threshold" />
     <MESSAGE value="switch is broken, but coloring is functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="switch is broken, but coloring is functional" />
+    <MESSAGE value="it works!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="it works!!" />
   </component>
 </project>
