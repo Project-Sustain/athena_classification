@@ -94,6 +94,7 @@ export function USMap(props) {
             onClick: info => setClickInfo(info)
         })
     ]
+
     function formatMetricName(name){
         return name.charAt(0).toUpperCase() + name.slice(1);
     }

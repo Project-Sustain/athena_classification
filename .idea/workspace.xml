@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="it works!!">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="small changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
     </list>
@@ -146,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674849006921</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="small changes">
+      <created>1674951615078</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1674951615078</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +181,7 @@
     <MESSAGE value="color changing based on slider for threshold" />
     <MESSAGE value="switch is broken, but coloring is functional" />
     <MESSAGE value="it works!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="it works!!" />
+    <MESSAGE value="small changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="small changes" />
   </component>
 </project>
