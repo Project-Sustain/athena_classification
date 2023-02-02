@@ -39,11 +39,18 @@ const useStyles = makeStyles({
 
 
 const response = full_response;
-const precisionScale = chroma.scale(['yellow', '008ae5']).domain([0, 1]);
-const recallScale = chroma.scale(['red', 'black']).domain([0, 1]);
-const precisionThresholdScale = chroma.scale(['pink', 'yellow']).domain([0,1]);
-const recallThresholdScale = chroma.scale(['green', 'purple']).domain([0,1]);
 
+// coloring scales below
+const precisionScale = chroma.scale(['7722e7', 'da25c8']).domain([0, 1]);
+const recallScale = chroma.scale(['caf0f8', '03045e']).domain([0, 1]);
+const precisionThresholdScale = chroma.scale(['2d00f7', 'f20089']).domain([0,1]);
+const recallThresholdScale = chroma.scale(['03045e', '4cc9f0']).domain([0,1]);
+
+
+// 07c8f9,OD41E1 (light blue to dark blue)
+// 7722e7,da25c8 (dark purple to dark pink)
+//2d00f7, f20089 (blue to pink)
+// f74c06,f9bc2c ( dark orange to light orange)
 
 
 // DeckGL react component
@@ -84,7 +91,7 @@ export function USMap(props) {
             id: 'geolayer',
             data: geoData,
             filled: true,
-            getLineColor:[225, 21, 20, 100],
+            getLineColor:[250, 250, 250, 250],
             getFillColor: d => colorByFilter(d['GISJOIN']),
 
             updateTriggers: {
@@ -170,11 +177,15 @@ export function USMap(props) {
         const sliderValueString = sliderValue.toString();
         if (validationType === 'precision') {
             const value = response[gis_join][sliderValueString][validationType];
-            return chroma(precisionScale(value)).rgb()
+            let rgba = chroma(precisionScale(value)).rgba();
+            rgba[rgba.length - 1] = 225;
+            return rgba;
         }
         else if(validationType === 'recall') {
             const value = response[gis_join][sliderValueString][validationType];
-            return chroma(recallScale(value)).rgb()
+            let rgba = chroma(recallScale(value)).rgba();
+            rgba[rgba.length - 1] = 225;
+            return rgba;
         }
         return
     }
