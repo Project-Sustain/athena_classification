@@ -10,6 +10,10 @@ import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button,
 import { makeStyles } from "@material-ui/core"
 import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
+import kmeans from "../Components/Kmeans"
+
+let result = kmeans(sample_response, 2)
+console.log(result);
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
