@@ -12,7 +12,7 @@ import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
 import kmeans from "../Components/Kmeans"
 
-let result = kmeans(sample_response, 2)
+let result = kmeans(sample_response, 2);
 console.log(result);
 
 // Viewport settings
@@ -37,10 +37,10 @@ const useStyles = makeStyles({
         padding: 15,
     },
     paper: {
-        padding: 15
+        padding: 15,
+        width: "40vw"
     }
 });
-
 
 const response = full_response;
 
@@ -50,12 +50,10 @@ const recallScale = chroma.scale(['caf0f8', '03045e']).domain([0, 1]);
 const precisionThresholdScale = chroma.scale(['2d00f7', 'f20089']).domain([0,1]);
 const recallThresholdScale = chroma.scale(['03045e', '4cc9f0']).domain([0,1]);
 
-
 // 07c8f9,OD41E1 (light blue to dark blue)
 // 7722e7,da25c8 (dark purple to dark pink)
 //2d00f7, f20089 (blue to pink)
 // f74c06,f9bc2c ( dark orange to light orange)
-
 
 // DeckGL react component
 export function USMap(props) {
@@ -88,7 +86,6 @@ export function USMap(props) {
     useEffect(() => {
         setLoading(Object.keys(geoData).length === 0);
     }, [geoData]);
-
 
     const layers = [
         new GeoJsonLayer({
@@ -238,6 +235,7 @@ export function USMap(props) {
                             <Button onClick={() => { setDisplayedMetric("threshold") }} >Threshold</Button>
                             <Button onClick={() => { setDisplayedMetric("precision") }} >Precision</Button>
                             <Button onClick={() => { setDisplayedMetric("recall") }} >Recall</Button>
+                            <Button onClick={() => { setDisplayedMetric("cluster") }} >Cluster</Button>
                         </ButtonGroup>
                     </Stack>
                 </Paper>

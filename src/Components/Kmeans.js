@@ -1,7 +1,10 @@
 //code below largely based on below tutorial:
 //https://medium.com/geekculture/implementing-k-means-clustering-from-scratch-in-javascript-13d71fbcb31e#:~:text=K%2Dmeans%20clustering%20is%20an,(clusters)%20of%20similar%20items.&text=The%20%E2%80%9Ck%E2%80%9D%20in%20k%2D,to%20divide%20the%20dataset%20in.
 
+import chroma from "chroma-js"
+
 const MAX_ITERATIONS = 50;
+const NUM_CLUSTERS = 55;
 
 function randomBetween(min, max) {
     return Math.floor(
@@ -180,7 +183,6 @@ function createFeatureLists(dataset){
             if(desiredFeatures[i] === "auc_of_roc") {
                 regional_features.push(gis_join);
                 regional_features.push(dataset[gis_join][desiredFeatures[i]]);
-                console.log(regional_features)
             }
             else{
                 regional_features.push(dataset[gis_join][desiredFeatures[i]]["precision"]);
@@ -197,8 +199,30 @@ function createFeatureLists(dataset){
     return {featureList, regionList};
 }
 
+function reformatClusters(clusters, regionList){
+    let reformattedCluster = {};
+    let cluster_scale = chroma.scale(['#fafa6e','#2A4858']).mode('lch').colors(6);
+
+    for (const index in clusters){
+        let points = clusters[index]["points"];
+
+        for (const point in points) {
+            for (const region_point in regionList) {
+
+                // This is not evaluating as equal when they should be
+                if (JSON.stringify(points[point]) === JSON.stringify(regionList[region_point].slice(1))){
+                    reformattedCluster[regionList[region_point][0]] = cluster_scale[index];
+                }
+            }
+        }
+    }
+
+    return reformattedCluster;
+}
+
 function kmeans(dataset, k, useNaiveSharding = true) {
     let dataset_regionList = createFeatureLists(dataset);
+
     dataset = dataset_regionList.featureList;
     let regionList = dataset_regionList.regionList;
 
@@ -225,16 +249,18 @@ function kmeans(dataset, k, useNaiveSharding = true) {
             centroids = recalculateCentroids(dataset, labels, k);
         }
 
-        const clusters = [];
+        let clusters = [];
         for (let i = 0; i < k; i++) {
             clusters.push(labels[i]);
         }
+        console.log({clusters})
+        console.log({regionList})
+
+        clusters = reformatClusters(clusters, regionList);
+
         const results = {
             clusters: clusters,
-            centroids: centroids,
-            iterations: iterations,
             converged: iterations <= MAX_ITERATIONS,
-            regionList: regionList
         };
         return results;
     } else {
