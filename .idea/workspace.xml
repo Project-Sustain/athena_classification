@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="coloring is functional for kmeans">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="change placement of control panel&#10;&#10;I also cleaned up several other files.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ControlPanel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675620541245</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="change placement of control panel&#10;&#10;I also cleaned up several other files.">
+      <created>1675637542542</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1675637542542</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +230,7 @@
     <MESSAGE value="Kmeans working" />
     <MESSAGE value="reformat result data from kmeans clustering." />
     <MESSAGE value="coloring is functional for kmeans" />
-    <option name="LAST_COMMIT_MESSAGE" value="coloring is functional for kmeans" />
+    <MESSAGE value="change placement of control panel&#10;&#10;I also cleaned up several other files." />
+    <option name="LAST_COMMIT_MESSAGE" value="change placement of control panel&#10;&#10;I also cleaned up several other files." />
   </component>
 </project>

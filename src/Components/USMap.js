@@ -110,7 +110,7 @@ export function USMap(props) {
         if(displayedMetric === 'threshold'){
             return displayThreshold();
         }
-        return displayPrecisionRecall();
+        return displayValidationSlider();
     }
 
     function displayThreshold(){
@@ -137,7 +137,7 @@ export function USMap(props) {
         );
     }
 
-    function displayPrecisionRecall(){
+    function displayValidationSlider(){
         if(displayedMetric === "cluster"){
             return null;
         }
@@ -244,7 +244,7 @@ export function USMap(props) {
             <div className={classes.root}>
                 <Paper elevation={3} className={classes.paper} >
                     <Stack direction='column' justifyContent='center' alignItems='center'>
-                        {displayValdationValues()}
+                        {displayValidationSlider()}
                         <ButtonGroup variant="contained" aria-label="outlined primary button group">
                             <Button onClick={() => { setDisplayedMetric("threshold") }} >Threshold</Button>
                             <Button onClick={() => { setDisplayedMetric("precision") }} >Precision</Button>
