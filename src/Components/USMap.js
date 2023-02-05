@@ -42,15 +42,10 @@ const useStyles = makeStyles({
 const response = full_response;
 
 // coloring scales below
-const precisionScale = chroma.scale(['7722e7', 'da25c8']).domain([0, 1]);
-const recallScale = chroma.scale(['caf0f8', '03045e']).domain([0, 1]);
-const precisionThresholdScale = chroma.scale(['2d00f7', 'f20089']).domain([0,1]);
-const recallThresholdScale = chroma.scale(['03045e', '4cc9f0']).domain([0,1]);
-
-// 07c8f9,OD41E1 (light blue to dark blue)
-// 7722e7,da25c8 (dark purple to dark pink)
-//2d00f7, f20089 (blue to pink)
-// f74c06,f9bc2c ( dark orange to light orange)
+const precisionScale = chroma.scale(["red",'#ff6d93','#fafa6e','#2A4858']).mode('lch').domain([0, 1]);
+const recallScale = chroma.scale(["ffbe0b","fb5607","ff006e","8338ec","3a86ff"]).mode('lch').domain([0, 1]);
+const precisionThresholdScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
+const recallThresholdScale = chroma.scale(["540d6e","ee4266","ffd23f","3bceac","0ead69"]).mode('lch').domain([0,1]);
 
 // DeckGL react component
 export function USMap(props) {
@@ -143,18 +138,24 @@ export function USMap(props) {
     }
 
     function displayPrecisionRecall(){
-        return (
-            <>
-                <Typography align='center'>{formatMetricName(displayedMetric)}: {sliderValueMetric.toFixed(2)}</Typography>
-                <Slider
-                    onChange={handleSliderChangeMetric}
-                    value={sliderValueMetric}
-                    step={0.05}
-                    min={0.0}
-                    max={1.0}
-                />
-            </>
-        );
+        if(displayedMetric === "cluster"){
+            return null;
+        }
+        else {
+            return (
+                <>
+                    <Typography
+                        align='center'>{formatMetricName(displayedMetric)}: {sliderValueMetric.toFixed(2)}</Typography>
+                    <Slider
+                        onChange={handleSliderChangeMetric}
+                        value={sliderValueMetric}
+                        step={0.05}
+                        min={0.0}
+                        max={1.0}
+                    />
+                </>
+            );
+        }
     }
 
     const handleSliderChange = (event, newValue) => {
