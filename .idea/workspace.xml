@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="it works!!">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="reformat result data from kmeans clustering.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Kmeans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Kmeans.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="kass_pivots" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,6 +83,7 @@
       <workItem from="1666122645862" duration="1217000" />
       <workItem from="1666624106529" duration="2883000" />
       <workItem from="1674420884187" duration="6192000" />
+      <workItem from="1675282510195" duration="25721000" />
     </task>
     <task id="LOCAL-00001" summary="testing commits">
       <created>1664559535662</created>
@@ -146,7 +148,42 @@
       <option name="project" value="LOCAL" />
       <updated>1674849006921</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="small changes">
+      <created>1674951615078</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1674951615078</updated>
+    </task>
+    <task id="LOCAL-00011" summary="small changes / formatting">
+      <created>1675283722884</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1675283722884</updated>
+    </task>
+    <task id="LOCAL-00012" summary="try new coloring schemes&#10;&#10;This was a bit of a failure. Need to try wrapping it in a them like Matt suggested.">
+      <created>1675296110002</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1675296110002</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Kmeans working">
+      <created>1675382636019</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1675382636019</updated>
+    </task>
+    <task id="LOCAL-00014" summary="reformat result data from kmeans clustering.">
+      <created>1675560916353</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1675560916353</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +211,11 @@
     <MESSAGE value="color changing based on slider for threshold" />
     <MESSAGE value="switch is broken, but coloring is functional" />
     <MESSAGE value="it works!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="it works!!" />
+    <MESSAGE value="small changes" />
+    <MESSAGE value="small changes / formatting" />
+    <MESSAGE value="try new coloring schemes&#10;&#10;This was a bit of a failure. Need to try wrapping it in a them like Matt suggested." />
+    <MESSAGE value="Kmeans working" />
+    <MESSAGE value="reformat result data from kmeans clustering." />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat result data from kmeans clustering." />
   </component>
 </project>
