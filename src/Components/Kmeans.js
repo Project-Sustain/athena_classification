@@ -201,7 +201,7 @@ function createFeatureLists(dataset){
 
 function reformatClusters(clusters, regionList){
     let reformattedCluster = {};
-    let cluster_scale = chroma.scale(['#fafa6e','#2A4858']).mode('lch').colors(6);
+    let cluster_scale = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(55);
 
     for (const index in clusters){
         let points = clusters[index]["points"];
@@ -253,13 +253,11 @@ function kmeans(dataset, k, useNaiveSharding = true) {
         for (let i = 0; i < k; i++) {
             clusters.push(labels[i]);
         }
-        console.log({clusters})
-        console.log({regionList})
 
-        clusters = reformatClusters(clusters, regionList);
+        const colored_regions = reformatClusters(clusters, regionList);
 
         const results = {
-            clusters: clusters,
+            colored_regions: colored_regions,
             converged: iterations <= MAX_ITERATIONS,
         };
         return results;

@@ -12,9 +12,6 @@ import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
 import kmeans from "../Components/Kmeans"
 
-let result = kmeans(sample_response, 2);
-console.log(result);
-
 // Viewport settings
 const INITIAL_VIEW_STATE = {
     longitude: -105.086559,
@@ -67,6 +64,7 @@ export function USMap(props) {
     const [validationType, setValidationType] = useState("recall");
     const [displayedMetric, setDisplayedMetric] = useState("threshold");
     const [sliderValueMetric, setSliderValueMetric] = useState(0.5);
+    const [groupedRegions, setGroupedRegions] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -86,6 +84,12 @@ export function USMap(props) {
     useEffect(() => {
         setLoading(Object.keys(geoData).length === 0);
     }, [geoData]);
+
+    useEffect(() => {
+        const result = kmeans(full_response, 55);
+        console.log(result);
+        setGroupedRegions(result);
+    }, []);
 
     const layers = [
         new GeoJsonLayer({
@@ -170,8 +174,17 @@ export function USMap(props) {
         if (displayedMetric === 'threshold'){
             return colorByThreshold(gis_join);
         }
+        else if(displayedMetric === 'cluster'){
+            return colorByCluster(gis_join);
+        }
         return colorByMetric(gis_join);
 
+    }
+
+    function colorByCluster(gis_join){
+        let rgba = chroma(groupedRegions["colored_regions"][gis_join]).rgba();
+        rgba[rgba.length - 1] = 225;
+        return rgba;
     }
 
     function colorByThreshold(gis_join){
