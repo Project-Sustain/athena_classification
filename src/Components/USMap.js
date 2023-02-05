@@ -8,34 +8,35 @@ import {mongoQuery} from "../Utils/Download.ts";
 import {GeoJsonLayer} from "@deck.gl/layers";
 import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import { makeStyles } from "@material-ui/core"
-import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
 import kmeans from "../Components/Kmeans"
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
-    longitude: -105.086559,
-    latitude: 40.573733,
-    zoom: 3.5,
-    pitch: 30,
+    longitude: -100.086559,
+    latitude: 45.573733,
+    zoom: 3,
+    pitch: 0,
     bearing: 0
 };
 
-const thresholdRange = [0.1, 0.9];
-const maxThreshold = thresholdRange[1];
 const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
-
 
 const useStyles = makeStyles({
     root: {
         width: 340,
         zIndex: 5000,
         opacity: 0.9,
-        padding: 15,
+        padding: 40,
+        position: "right"
+
     },
     paper: {
         padding: 15,
-        width: "40vw"
+        width: "40vw",
+        position: "absolute",
+        top:"10px",
+        right: "10px"
     }
 });
 
@@ -82,7 +83,6 @@ export function USMap(props) {
 
     useEffect(() => {
         const result = kmeans(full_response, 55);
-        console.log(result);
         setGroupedRegions(result);
     }, []);
 
