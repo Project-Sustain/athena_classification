@@ -73,6 +73,7 @@ export function useColor(response){
         return [0,0,0,0];
     }
 
+    const coloringTriggers = [sliderValue, validationType, sliderValueMetric, displayedMetric];
 
     const colorData = {
         coloredRegions: coloredRegions,
@@ -80,7 +81,8 @@ export function useColor(response){
         sliderValue: sliderValue,
         validationType: validationType,
         displayedMetric: displayedMetric,
-        sliderValueMetric: sliderValueMetric
+        sliderValueMetric: sliderValueMetric,
+        coloringTriggers: coloringTriggers
     }
 
     const colorManagement = {

@@ -80,7 +80,7 @@ export function USMap(props) {
             getFillColor: d => colorManagement.colorByFilter(d['GISJOIN']),
 
             updateTriggers: {
-                getFillColor: [colorData.sliderValue, colorData.validationType, colorData.sliderValueMetric, colorData.displayedMetric]
+                getFillColor: colorData.coloringTriggers
             },
             pickable: true,
             onClick: info => setClickInfo(info)
