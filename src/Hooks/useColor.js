@@ -15,7 +15,8 @@ export function useColor(response){
     const colorScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
 
     useEffect(() => {
-        const result = kmeans(response, 55);
+        let colorValues = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(55);
+        const result = kmeans(response, 55, colorValues);
         setColoredRegions(result);
     }, []);
 
