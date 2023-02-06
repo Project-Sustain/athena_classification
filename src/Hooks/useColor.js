@@ -14,7 +14,6 @@ export function useColor(response){
     const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
     const colorScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
 
-
     useEffect(() => {
         const result = kmeans(response, 55);
         setColoredRegions(result);

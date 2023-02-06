@@ -8,8 +8,6 @@ import {mongoQuery} from "../Utils/Download.ts";
 import {GeoJsonLayer} from "@deck.gl/layers";
 import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import { makeStyles } from "@material-ui/core"
-import chroma from "chroma-js"
-
 import {useColor} from "../Hooks/useColor.js";
 
 // Viewport settings
@@ -50,7 +48,6 @@ export function USMap(props) {
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
-
     const {colorData, colorManagement} = useColor(response);
 
     useEffect(() => {
@@ -87,10 +84,6 @@ export function USMap(props) {
         })
     ]
 
-    function formatMetricName(name){
-        return name.charAt(0).toUpperCase() + name.slice(1);
-    }
-
     const handleSliderChange = (event, newValue) => {
         colorManagement.setSliderValue(newValue);
     }
@@ -103,6 +96,10 @@ export function USMap(props) {
         setChecked(event.target.checked)
         const newValidationType = colorData.validationType === 'precision' ? 'recall' : 'precision';
         colorManagement.setValidationType(newValidationType)
+    }
+
+    function formatMetricName(name){
+        return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
     function displayThresholdSlider(){

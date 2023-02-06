@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="all functionality for coloring moved into useColor">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="clean up and change some values around">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
@@ -246,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675716892521</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="clean up and change some values around">
+      <created>1675717188523</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1675717188523</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +295,7 @@
     <MESSAGE value="move things around" />
     <MESSAGE value="refactor out clustering" />
     <MESSAGE value="all functionality for coloring moved into useColor" />
-    <option name="LAST_COMMIT_MESSAGE" value="all functionality for coloring moved into useColor" />
+    <MESSAGE value="clean up and change some values around" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up and change some values around" />
   </component>
 </project>
