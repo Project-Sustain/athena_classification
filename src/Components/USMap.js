@@ -108,54 +108,6 @@ export function USMap(props) {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
-    function displayThreshold(){
-        return (
-            <>
-                <Typography align='center'>Threshold: {sliderValue}</Typography>
-                <Stack direction='row' spacing={1} alignItems='center'>
-                    <Typography>Recall</Typography>
-                    <Switch
-                        checked={checked}
-                        onChange={onChangeSwitch}
-                    />
-                    <Typography>Precision</Typography>
-                </Stack>
-                <Slider
-                    onChange={handleSliderChange}
-                    value={sliderValue}
-                    step={0.1}
-                    marks={true}
-                    min={0.1}
-                    max={0.9}
-                />
-            </>
-        );
-    }
-
-    function displayValidationSlider(){
-        if(displayedMetric === "cluster"){
-            return null;
-        }
-        else if(displayedMetric === "threshold"){
-            return displayThreshold();
-        }
-        else {
-            return (
-                <>
-                    <Typography
-                        align='center'>{formatMetricName(displayedMetric)}: {sliderValueMetric.toFixed(2)}</Typography>
-                    <Slider
-                        onChange={handleSliderChangeMetric}
-                        value={sliderValueMetric}
-                        step={0.05}
-                        min={0.0}
-                        max={1.0}
-                    />
-                </>
-            );
-        }
-    }
-
     const handleSliderChange = (event, newValue) => {
         setSliderValue(newValue);
     }
@@ -221,6 +173,54 @@ export function USMap(props) {
             }
         }
         return [0,0,0,0];
+    }
+
+    function displayThresholdSlider(){
+        return (
+            <>
+                <Typography align='center'>Threshold: {sliderValue}</Typography>
+                <Stack direction='row' spacing={1} alignItems='center'>
+                    <Typography>Recall</Typography>
+                    <Switch
+                        checked={checked}
+                        onChange={onChangeSwitch}
+                    />
+                    <Typography>Precision</Typography>
+                </Stack>
+                <Slider
+                    onChange={handleSliderChange}
+                    value={sliderValue}
+                    step={0.1}
+                    marks={true}
+                    min={0.1}
+                    max={0.9}
+                />
+            </>
+        );
+    }
+
+    function displayValidationSlider(){
+        if(displayedMetric === "cluster"){
+            return null;
+        }
+        else if(displayedMetric === "threshold"){
+            return displayThresholdSlider();
+        }
+        else {
+            return (
+                <>
+                    <Typography
+                        align='center'>{formatMetricName(displayedMetric)}: {sliderValueMetric.toFixed(2)}</Typography>
+                    <Slider
+                        onChange={handleSliderChangeMetric}
+                        value={sliderValueMetric}
+                        step={0.05}
+                        min={0.0}
+                        max={1.0}
+                    />
+                </>
+            );
+        }
     }
 
     if (loading) {

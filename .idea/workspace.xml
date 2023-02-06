@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="solve bug issue with threshold slider">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="clean up coloring and remove unused function">
+      <change afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
     </list>
@@ -210,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675709854625</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="clean up coloring and remove unused function">
+      <created>1675710979675</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1675710979675</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +255,7 @@
     <MESSAGE value="change placement of control panel&#10;&#10;I also cleaned up several other files." />
     <MESSAGE value="re-name functions" />
     <MESSAGE value="solve bug issue with threshold slider" />
-    <option name="LAST_COMMIT_MESSAGE" value="solve bug issue with threshold slider" />
+    <MESSAGE value="clean up coloring and remove unused function" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up coloring and remove unused function" />
   </component>
 </project>
