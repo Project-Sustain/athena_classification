@@ -9,7 +9,9 @@ import {GeoJsonLayer} from "@deck.gl/layers";
 import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import { makeStyles } from "@material-ui/core"
 import chroma from "chroma-js"
-import kmeans from "../Components/Kmeans"
+import kmeans from "../Components/Kmeans";
+
+import {useColor} from "../Hooks/useColor.js";
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -55,7 +57,8 @@ export function USMap(props) {
     const [validationType, setValidationType] = useState("recall");
     const [displayedMetric, setDisplayedMetric] = useState("threshold");
     const [sliderValueMetric, setSliderValueMetric] = useState(0.5);
-    const [groupedRegions, setGroupedRegions] = useState({});
+
+    const data = useColor(response);
 
     useEffect(() => {
         (async () => {
@@ -75,11 +78,6 @@ export function USMap(props) {
     useEffect(() => {
         setLoading(Object.keys(geoData).length === 0);
     }, [geoData]);
-
-    useEffect(() => {
-        const result = kmeans(full_response, 55);
-        setGroupedRegions(result);
-    }, []);
 
     const layers = [
         new GeoJsonLayer({
@@ -127,7 +125,7 @@ export function USMap(props) {
     }
 
     function colorByCluster(gis_join){
-        let rgba = chroma(groupedRegions["colored_regions"][gis_join]).rgba();
+        let rgba = chroma(data.coloredRegions["colored_regions"][gis_join]).rgba();
         rgba[rgba.length - 1] = 225;
         return rgba;
     }
