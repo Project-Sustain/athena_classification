@@ -43,10 +43,12 @@ const useStyles = makeStyles({
 const response = full_response;
 
 // coloring scales below
-const precisionScale = chroma.scale(["red",'#ff6d93','#fafa6e','#2A4858']).mode('lch').domain([0, 1]);
-const recallScale = chroma.scale(["ffbe0b","fb5607","ff006e","8338ec","3a86ff"]).mode('lch').domain([0, 1]);
-const precisionThresholdScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
-const recallThresholdScale = chroma.scale(["540d6e","ee4266","ffd23f","3bceac","0ead69"]).mode('lch').domain([0,1]);
+// const precisionScale = chroma.scale(["red",'#ff6d93','#fafa6e','#2A4858']).mode('lch').domain([0, 1]);
+// const recallScale = chroma.scale(["ffbe0b","fb5607","ff006e","8338ec","3a86ff"]).mode('lch').domain([0, 1]);
+// const precisionThresholdScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
+// const recallThresholdScale = chroma.scale(["540d6e","ee4266","ffd23f","3bceac","0ead69"]).mode('lch').domain([0,1]);
+
+const colorScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
 
 // DeckGL react component
 export function USMap(props) {
@@ -104,13 +106,6 @@ export function USMap(props) {
 
     function formatMetricName(name){
         return name.charAt(0).toUpperCase() + name.slice(1);
-    }
-
-    function displayValdationValues(){
-        if(displayedMetric === 'threshold'){
-            return displayThreshold();
-        }
-        return displayValidationSlider();
     }
 
     function displayThreshold(){
@@ -195,13 +190,13 @@ export function USMap(props) {
         const sliderValueString = sliderValue.toString();
         if (validationType === 'precision') {
             const value = response[gis_join][sliderValueString][validationType];
-            let rgba = chroma(precisionScale(value)).rgba();
+            let rgba = chroma(colorScale(value)).rgba();
             rgba[rgba.length - 1] = 225;
             return rgba;
         }
         else if(validationType === 'recall') {
             const value = response[gis_join][sliderValueString][validationType];
-            let rgba = chroma(recallScale(value)).rgba();
+            let rgba = chroma(colorScale(value)).rgba();
             rgba[rgba.length - 1] = 225;
             return rgba;
         }
@@ -213,7 +208,7 @@ export function USMap(props) {
             for(let i = 0; i < thresholdValues.length; i++) {
                 const value = response[gis_join][thresholdValues[i]]['precision'];
                 if(value >= sliderValueMetric) {
-                    return chroma(precisionThresholdScale(parseFloat(thresholdValues[i]))).rgb();
+                    return chroma(colorScale(parseFloat(thresholdValues[i]))).rgb();
                 }
             }
         }
@@ -221,7 +216,7 @@ export function USMap(props) {
             for(let i = 0; i < thresholdValues.length; i++) {
                 const value = response[gis_join][thresholdValues[i]]['recall'];
                 if(value <= sliderValueMetric) {
-                    return chroma(recallThresholdScale(parseFloat(thresholdValues[i]))).rgb();
+                    return chroma(colorScale(parseFloat(thresholdValues[i]))).rgb();
                 }
             }
         }
