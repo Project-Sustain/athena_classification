@@ -43,7 +43,6 @@ const useStyles = makeStyles({
 // DeckGL react component
 export function USMap(props) {
     const classes = useStyles();
-
     const [checked, setChecked] = useState(false);
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
@@ -93,9 +92,9 @@ export function USMap(props) {
     }
 
     const onChangeSwitch = (event) => {
-        setChecked(event.target.checked)
+        setChecked(event.target.checked);
         const newValidationType = colorData.validationType === 'precision' ? 'recall' : 'precision';
-        colorManagement.setValidationType(newValidationType)
+        colorManagement.setValidationType(newValidationType);
     }
 
     function formatMetricName(name){
