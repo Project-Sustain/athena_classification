@@ -20,7 +20,10 @@ const INITIAL_VIEW_STATE = {
     bearing: 0
 };
 
+// Constant variables
+const response = full_response;
 const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
+const colorScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
 
 const useStyles = makeStyles({
     root: {
@@ -39,16 +42,6 @@ const useStyles = makeStyles({
         right: "10px"
     }
 });
-
-const response = full_response;
-
-// coloring scales below
-// const precisionScale = chroma.scale(["red",'#ff6d93','#fafa6e','#2A4858']).mode('lch').domain([0, 1]);
-// const recallScale = chroma.scale(["ffbe0b","fb5607","ff006e","8338ec","3a86ff"]).mode('lch').domain([0, 1]);
-// const precisionThresholdScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
-// const recallThresholdScale = chroma.scale(["540d6e","ee4266","ffd23f","3bceac","0ead69"]).mode('lch').domain([0,1]);
-
-const colorScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
 
 // DeckGL react component
 export function USMap(props) {
@@ -111,6 +104,7 @@ export function USMap(props) {
     const handleSliderChange = (event, newValue) => {
         setSliderValue(newValue);
     }
+
     const handleSliderChangeMetric = (event, newValue) => {
         setSliderValueMetric(newValue);
     }
