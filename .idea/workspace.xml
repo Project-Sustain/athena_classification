@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="move things around">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="refactor out clustering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
@@ -232,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675713167827</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="refactor out clustering">
+      <created>1675714481850</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1675714481850</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,6 +279,7 @@
     <MESSAGE value="clean up coloring and remove unused function" />
     <MESSAGE value="reorganize functions, add file" />
     <MESSAGE value="move things around" />
-    <option name="LAST_COMMIT_MESSAGE" value="move things around" />
+    <MESSAGE value="refactor out clustering" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor out clustering" />
   </component>
 </project>
