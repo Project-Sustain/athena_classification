@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="coloring is functional for kmeans">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
-    </list>
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="move things around" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="kass_pivots" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -189,7 +186,49 @@
       <option name="project" value="LOCAL" />
       <updated>1675620541245</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="change placement of control panel&#10;&#10;I also cleaned up several other files.">
+      <created>1675637542542</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1675637542542</updated>
+    </task>
+    <task id="LOCAL-00017" summary="re-name functions">
+      <created>1675638415590</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1675638415590</updated>
+    </task>
+    <task id="LOCAL-00018" summary="solve bug issue with threshold slider">
+      <created>1675709854625</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1675709854625</updated>
+    </task>
+    <task id="LOCAL-00019" summary="clean up coloring and remove unused function">
+      <created>1675710979675</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1675710979675</updated>
+    </task>
+    <task id="LOCAL-00020" summary="reorganize functions, add file">
+      <created>1675712798471</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1675712798471</updated>
+    </task>
+    <task id="LOCAL-00021" summary="move things around">
+      <created>1675713167827</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1675713167827</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +262,12 @@
     <MESSAGE value="Kmeans working" />
     <MESSAGE value="reformat result data from kmeans clustering." />
     <MESSAGE value="coloring is functional for kmeans" />
-    <option name="LAST_COMMIT_MESSAGE" value="coloring is functional for kmeans" />
+    <MESSAGE value="change placement of control panel&#10;&#10;I also cleaned up several other files." />
+    <MESSAGE value="re-name functions" />
+    <MESSAGE value="solve bug issue with threshold slider" />
+    <MESSAGE value="clean up coloring and remove unused function" />
+    <MESSAGE value="reorganize functions, add file" />
+    <MESSAGE value="move things around" />
+    <option name="LAST_COMMIT_MESSAGE" value="move things around" />
   </component>
 </project>

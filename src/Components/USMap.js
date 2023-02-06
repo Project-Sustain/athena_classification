@@ -8,44 +8,40 @@ import {mongoQuery} from "../Utils/Download.ts";
 import {GeoJsonLayer} from "@deck.gl/layers";
 import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import { makeStyles } from "@material-ui/core"
-import {DataFilterExtension} from '@deck.gl/extensions';
 import chroma from "chroma-js"
 import kmeans from "../Components/Kmeans"
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
-    longitude: -105.086559,
-    latitude: 40.573733,
-    zoom: 3.5,
-    pitch: 30,
+    longitude: -100.086559,
+    latitude: 45.573733,
+    zoom: 3,
+    pitch: 0,
     bearing: 0
 };
 
-const thresholdRange = [0.1, 0.9];
-const maxThreshold = thresholdRange[1];
+// Constant variables
+const response = full_response;
 const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
-
+const colorScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
 
 const useStyles = makeStyles({
     root: {
         width: 340,
         zIndex: 5000,
         opacity: 0.9,
-        padding: 15,
+        padding: 40,
+        position: "right"
+
     },
     paper: {
         padding: 15,
-        width: "40vw"
+        width: "40vw",
+        position: "absolute",
+        top:"10px",
+        right: "10px"
     }
 });
-
-const response = full_response;
-
-// coloring scales below
-const precisionScale = chroma.scale(["red",'#ff6d93','#fafa6e','#2A4858']).mode('lch').domain([0, 1]);
-const recallScale = chroma.scale(["ffbe0b","fb5607","ff006e","8338ec","3a86ff"]).mode('lch').domain([0, 1]);
-const precisionThresholdScale = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').domain([0,1]);
-const recallThresholdScale = chroma.scale(["540d6e","ee4266","ffd23f","3bceac","0ead69"]).mode('lch').domain([0,1]);
 
 // DeckGL react component
 export function USMap(props) {
@@ -82,7 +78,6 @@ export function USMap(props) {
 
     useEffect(() => {
         const result = kmeans(full_response, 55);
-        console.log(result);
         setGroupedRegions(result);
     }, []);
 
@@ -106,61 +101,10 @@ export function USMap(props) {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
-    function displayValdationValues(){
-        if(displayedMetric === 'threshold'){
-            return displayThreshold();
-        }
-        return displayPrecisionRecall();
-    }
-
-    function displayThreshold(){
-        return (
-            <>
-                <Typography align='center'>Threshold: {sliderValue}</Typography>
-                <Stack direction='row' spacing={1} alignItems='center'>
-                    <Typography>Recall</Typography>
-                    <Switch
-                        checked={checked}
-                        onChange={onChangeSwitch}
-                    />
-                    <Typography>Precision</Typography>
-                </Stack>
-                <Slider
-                    onChange={handleSliderChange}
-                    value={sliderValue}
-                    step={0.1}
-                    marks={true}
-                    min={0.1}
-                    max={0.9}
-                />
-            </>
-        );
-    }
-
-    function displayPrecisionRecall(){
-        if(displayedMetric === "cluster"){
-            return null;
-        }
-        else {
-            return (
-                <>
-                    <Typography
-                        align='center'>{formatMetricName(displayedMetric)}: {sliderValueMetric.toFixed(2)}</Typography>
-                    <Slider
-                        onChange={handleSliderChangeMetric}
-                        value={sliderValueMetric}
-                        step={0.05}
-                        min={0.0}
-                        max={1.0}
-                    />
-                </>
-            );
-        }
-    }
-
     const handleSliderChange = (event, newValue) => {
         setSliderValue(newValue);
     }
+
     const handleSliderChangeMetric = (event, newValue) => {
         setSliderValueMetric(newValue);
     }
@@ -192,13 +136,13 @@ export function USMap(props) {
         const sliderValueString = sliderValue.toString();
         if (validationType === 'precision') {
             const value = response[gis_join][sliderValueString][validationType];
-            let rgba = chroma(precisionScale(value)).rgba();
+            let rgba = chroma(colorScale(value)).rgba();
             rgba[rgba.length - 1] = 225;
             return rgba;
         }
         else if(validationType === 'recall') {
             const value = response[gis_join][sliderValueString][validationType];
-            let rgba = chroma(recallScale(value)).rgba();
+            let rgba = chroma(colorScale(value)).rgba();
             rgba[rgba.length - 1] = 225;
             return rgba;
         }
@@ -210,7 +154,7 @@ export function USMap(props) {
             for(let i = 0; i < thresholdValues.length; i++) {
                 const value = response[gis_join][thresholdValues[i]]['precision'];
                 if(value >= sliderValueMetric) {
-                    return chroma(precisionThresholdScale(parseFloat(thresholdValues[i]))).rgb();
+                    return chroma(colorScale(parseFloat(thresholdValues[i]))).rgb();
                 }
             }
         }
@@ -218,11 +162,59 @@ export function USMap(props) {
             for(let i = 0; i < thresholdValues.length; i++) {
                 const value = response[gis_join][thresholdValues[i]]['recall'];
                 if(value <= sliderValueMetric) {
-                    return chroma(recallThresholdScale(parseFloat(thresholdValues[i]))).rgb();
+                    return chroma(colorScale(parseFloat(thresholdValues[i]))).rgb();
                 }
             }
         }
         return [0,0,0,0];
+    }
+
+    function displayThresholdSlider(){
+        return (
+            <>
+                <Typography align='center'>Threshold: {sliderValue}</Typography>
+                <Stack direction='row' spacing={1} alignItems='center'>
+                    <Typography>Recall</Typography>
+                    <Switch
+                        checked={checked}
+                        onChange={onChangeSwitch}
+                    />
+                    <Typography>Precision</Typography>
+                </Stack>
+                <Slider
+                    onChange={handleSliderChange}
+                    value={sliderValue}
+                    step={0.1}
+                    marks={true}
+                    min={0.1}
+                    max={0.9}
+                />
+            </>
+        );
+    }
+
+    function displayValidationSlider(){
+        if(displayedMetric === "cluster"){
+            return null;
+        }
+        else if(displayedMetric === "threshold"){
+            return displayThresholdSlider();
+        }
+        else {
+            return (
+                <>
+                    <Typography
+                        align='center'>{formatMetricName(displayedMetric)}: {sliderValueMetric.toFixed(2)}</Typography>
+                    <Slider
+                        onChange={handleSliderChangeMetric}
+                        value={sliderValueMetric}
+                        step={0.05}
+                        min={0.0}
+                        max={1.0}
+                    />
+                </>
+            );
+        }
     }
 
     if (loading) {
@@ -244,7 +236,7 @@ export function USMap(props) {
             <div className={classes.root}>
                 <Paper elevation={3} className={classes.paper} >
                     <Stack direction='column' justifyContent='center' alignItems='center'>
-                        {displayValdationValues()}
+                        {displayValidationSlider()}
                         <ButtonGroup variant="contained" aria-label="outlined primary button group">
                             <Button onClick={() => { setDisplayedMetric("threshold") }} >Threshold</Button>
                             <Button onClick={() => { setDisplayedMetric("precision") }} >Precision</Button>
