@@ -141,6 +141,9 @@ export function USMap(props) {
         if(displayedMetric === "cluster"){
             return null;
         }
+        else if(displayedMetric === "threshold"){
+            return displayThreshold();
+        }
         else {
             return (
                 <>
