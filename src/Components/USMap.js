@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import { makeStyles } from "@material-ui/core"
+import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import DeckGL from '@deck.gl/react';
 import {StaticMap} from 'react-map-gl';
 import {BASEMAP} from '@deck.gl/carto';
+import {GeoJsonLayer} from "@deck.gl/layers";
 import {sample_response} from "../testing/sample_response";
 import {full_response} from "../testing/full_response";
 import {mongoQuery} from "../Utils/Download.ts";
-import {GeoJsonLayer} from "@deck.gl/layers";
-import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
-import { makeStyles } from "@material-ui/core"
 import {useColor} from "../Hooks/useColor.js";
+import {ColorLegend} from "../Components/ColorLegend"
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -54,6 +55,7 @@ export function USMap(props) {
             const geoData = await mongoQuery("county_geo_30mb", [])
             if(geoData){
                 // TODO: Change this below filtering logic when streaming in real response
+                console.log({geoData})
                 let filteredData = geoData.filter(x => Object.keys(response).includes(x['GISJOIN']))
                 console.log({filteredData})
                 setGeoData(filteredData)
@@ -177,6 +179,7 @@ export function USMap(props) {
                         </ButtonGroup>
                     </Stack>
                 </Paper>
+                <ColorLegend tableLabel={formatMetricName(colorData.displayedMetric)}/>
             </div>
             </>
         );
