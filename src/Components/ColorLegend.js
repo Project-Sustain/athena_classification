@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,36 +8,40 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import chroma from "chroma-js";
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
+
+const rangeValues = {
+    PrecisionRecall: [" < 0.1" ,"0.1 - 0.2", "0.2 - 0.3", "0.3 - 0.4", "0.4 - 0.5", "0.5 - 0.6", "0.6 - 0.7", "0.7 - 0.8", "0.8 - 0.9", "> 0.9"],
+    thresholdValues: ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"]
 }
+const colorValues = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').colors(10);
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+export function ColorLegend({displayedMetric}) {
+    const [tableValues, setTableValues] = useState(rangeValues.PrecisionRecall);
+
+    function tableLabel(displayedMetric){
+        if(displayedMetric === 'threshold'){
+            setTableValues(rangeValues.PrecisionRecall);
+        }
+        else{
+            setTableValues(rangeValues.thesholdValues);
+        }
+    }
 
 
-const colorValues = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(10);
-
-export function ColorLegend({tableLabel}) {
     return (
-        <TableContainer sx={{ maxWidth: 200 }} component={Paper}>
-            <Table sx={{ minWidth: 130 }} size="small" aria-label="a dense table">
+        <TableContainer elevation={3} sx={{ maxWidth: 200}} component={Paper}>
+            <Table sx={{ minWidth: 200 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="center">{tableLabel}</TableCell>
+                        <TableCell align="center">{displayedMetric}</TableCell>
                         <TableCell align="center">Values</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row, index) => (
-                        <TableRow>
+                    {tableValues.map((row, index) => (
+                        <TableRow  key={index}>
                             <TableCell component="th" scope="row" sx={{backgroundColor: colorValues[index]}}></TableCell>
-                            <TableCell align="center">{row.calories}</TableCell>
+                            <TableCell align="center">{tableValues[index]}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

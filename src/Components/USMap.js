@@ -179,7 +179,7 @@ export function USMap(props) {
                         </ButtonGroup>
                     </Stack>
                 </Paper>
-                <ColorLegend tableLabel={formatMetricName(colorData.displayedMetric)}/>
+                <ColorLegend displayedMetric={formatMetricName(colorData.displayedMetric)}/>
             </div>
             </>
         );
