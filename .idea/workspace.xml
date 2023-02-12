@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="have legend on map and coloring working">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="works, but dynamic table rendering is not. &#10;&#10;Not changing tbale values based on the selected values.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ColorLegend.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ColorLegend.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
@@ -267,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676148628935</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="works, but dynamic table rendering is not. &#10;&#10;Not changing tbale values based on the selected values.">
+      <created>1676153781645</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1676153781645</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +293,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add base code" />
     <MESSAGE value="Yeet package-lock" />
     <MESSAGE value="set up deck gl, have shapes rendering" />
     <MESSAGE value="base code setup, county shapes are rendering." />
@@ -311,6 +317,7 @@
     <MESSAGE value="clean up and change some values around" />
     <MESSAGE value="remove chroma from kmeans" />
     <MESSAGE value="have legend on map and coloring working" />
-    <option name="LAST_COMMIT_MESSAGE" value="have legend on map and coloring working" />
+    <MESSAGE value="works, but dynamic table rendering is not. &#10;&#10;Not changing tbale values based on the selected values." />
+    <option name="LAST_COMMIT_MESSAGE" value="works, but dynamic table rendering is not. &#10;&#10;Not changing tbale values based on the selected values." />
   </component>
 </project>

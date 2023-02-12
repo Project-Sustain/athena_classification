@@ -151,6 +151,19 @@ export function USMap(props) {
         }
     }
 
+    function displayLegend() {
+        console.log(colorData.displayedMetric)
+        if (colorData.displayedMetric === "cluster") {
+            return null;
+        }
+        else {
+            return (
+                <ColorLegend displayedMetric={formatMetricName(colorData.displayedMetric)}
+                         validationType={colorData.validationType}/>
+            );
+        }
+    }
+
     if (loading) {
         return (
             <Box >
@@ -179,7 +192,7 @@ export function USMap(props) {
                         </ButtonGroup>
                     </Stack>
                 </Paper>
-                <ColorLegend displayedMetric={formatMetricName(colorData.displayedMetric)}/>
+                {displayLegend()}
             </div>
             </>
         );

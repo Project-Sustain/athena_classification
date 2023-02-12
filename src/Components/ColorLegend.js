@@ -13,39 +13,67 @@ const rangeValues = {
     PrecisionRecall: [" < 0.1" ,"0.1 - 0.2", "0.2 - 0.3", "0.3 - 0.4", "0.4 - 0.5", "0.5 - 0.6", "0.6 - 0.7", "0.7 - 0.8", "0.8 - 0.9", "> 0.9"],
     thresholdValues: ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"]
 }
+
 const colorValues = chroma.scale(["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"]).mode('lch').colors(10);
 
-export function ColorLegend({displayedMetric}) {
+export function ColorLegend({displayedMetric, validationType}) {
+    console.log({displayedMetric})
     const [tableValues, setTableValues] = useState(rangeValues.PrecisionRecall);
+    const [visualizedMetric, setVisualizedMetric] = useState("Precision");
 
-    function tableLabel(displayedMetric){
-        if(displayedMetric === 'threshold'){
+    console.log({tableValues})
+
+    useEffect(() => {
+        if(displayedMetric === 'Threshold'){
+            console.log("setting to precision")
             setTableValues(rangeValues.PrecisionRecall);
         }
         else{
-            setTableValues(rangeValues.thesholdValues);
+            console.log("setting to threshold")
+            setTableValues(rangeValues.thresholdValues);
         }
-    }
+    }, [displayedMetric]);
 
+    useEffect(() => {
+        if(displayedMetric === "Precision" || displayedMetric === "Recall"){
+            setVisualizedMetric("Threshold");
+        }
+        else if(validationType === "precision"){
+            setVisualizedMetric("Precision");
+        }
+        else if(validationType === "recall"){
+            setVisualizedMetric("Recall");
+        }
+        else{
+            setVisualizedMetric("Threshold");
+        }
 
-    return (
-        <TableContainer elevation={3} sx={{ maxWidth: 200}} component={Paper}>
-            <Table sx={{ minWidth: 200 }} size="small" aria-label="a dense table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell align="center">{displayedMetric}</TableCell>
-                        <TableCell align="center">Values</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {tableValues.map((row, index) => (
-                        <TableRow  key={index}>
-                            <TableCell component="th" scope="row" sx={{backgroundColor: colorValues[index]}}></TableCell>
-                            <TableCell align="center">{tableValues[index]}</TableCell>
+    }, [displayedMetric, validationType]);
+
+    if(tableValues && tableValues.length > 0) {
+        return (
+            <TableContainer elevation={3} sx={{maxWidth: 200}} component={Paper}>
+                <Table sx={{minWidth: 200}} size="small" aria-label="a dense table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center">{visualizedMetric}</TableCell>
+                            <TableCell align="center">Values</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
+                    </TableHead>
+                    <TableBody>
+                        {tableValues.map((row, index) => (
+                            <TableRow key={index}>
+                                <TableCell component="th" scope="row"
+                                           sx={{backgroundColor: colorValues[index]}}></TableCell>
+                                <TableCell align="center">{tableValues[index]}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        );
+    }
+    else {
+        return null;
+    }
 }
