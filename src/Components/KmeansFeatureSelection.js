@@ -20,35 +20,43 @@ const useStyles = makeStyles({
     }
 });
 
+const defaultFeatures = [[true, false],[true,true], [false, true], [true, false], [false, false], [true, true], [false, false], [false, false],[false, false],[false, false]];
+
 export function KmeansFeatureSelection() {
     const classes = useStyles();
-    const [checked, setChecked] = useState([true, false]);
+    const [checked, setChecked] = useState(defaultFeatures);
 
-    const handleChange1 = (event) => {
-        setChecked([event.target.checked, event.target.checked]);
+    console.log({checked})
+
+    const handleChange1 = (event, i) => {
+        console.log("Reading checked: " + checked)
+        let tempChecked = checked;
+        tempChecked[i] = [event.target.checked, event.target.checked];
+        setChecked(tempChecked);
     };
 
-    const handleChange2 = (event) => {
-        setChecked([event.target.checked, checked[1]]);
+    const handleChange2 = (event, i) => {
+        let tempChecked = checked;
+        tempChecked[i] = [event.target.checked, checked[i][1]];
+        setChecked(tempChecked);
     };
 
-    const handleChange3 = (event) => {
-        setChecked([checked[0], event.target.checked]);
+    const handleChange3 = (event, i) => {
+        let tempChecked = checked;
+        tempChecked[i] = [checked[i][0], event.target.checked];
+        setChecked(tempChecked);
     };
 
     const children = (index) => {
-        if(index === 0){
-            return null;
-        }
         return (
             <Box sx={{display: 'flex', flexDirection: 'column', ml: 3}}>
                 <FormControlLabel
                     label="Precision"
-                    control={<Checkbox checked={checked[0]} onChange={handleChange2}/>}
+                    control={<Checkbox checked={checked[index][0]} onChange={handleChange2(index)}/>}
                 />
                 <FormControlLabel
                     label="Recall"
-                    control={<Checkbox checked={checked[1]} onChange={handleChange3}/>}
+                    control={<Checkbox checked={checked[index][1]} onChange={handleChange3(index)}/>}
                 />
             </Box>
         );
@@ -65,9 +73,9 @@ export function KmeansFeatureSelection() {
                                 label={item}
                                 control={
                                     <Checkbox
-                                        checked={checked[0] && checked[1]}
-                                        indeterminate={checked[0] !== checked[1]}
-                                        onChange={handleChange1}
+                                        checked={checked[i][0] && checked[i][1]}
+                                        indeterminate={checked[i][0] !== checked[i][1]}
+                                        onChange={handleChange1(i)}
                                     />
                                 }
                             />
