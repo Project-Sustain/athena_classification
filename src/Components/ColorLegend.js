@@ -33,21 +33,16 @@ const useStyles = makeStyles({
 });
 
 export function ColorLegend({displayedMetric, validationType}) {
-    console.log({displayedMetric})
 
     const classes = useStyles();
     const [tableValues, setTableValues] = useState(rangeValues.PrecisionRecall);
     const [visualizedMetric, setVisualizedMetric] = useState("Precision");
 
-    console.log({tableValues})
-
     useEffect(() => {
         if(displayedMetric === 'Threshold'){
-            console.log("setting to precision")
             setTableValues(rangeValues.PrecisionRecall);
         }
         else{
-            console.log("setting to threshold")
             setTableValues(rangeValues.thresholdValues);
         }
     }, [displayedMetric]);
