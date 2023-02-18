@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="add form control">
-      <change afterPath="$PROJECT_DIR$/src/Components/CustomCheckbox.js" afterDir="false" />
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="Checkboxes working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/CustomCheckbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CustomCheckbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Kmeans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Kmeans.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676248189685</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Checkboxes working">
+      <created>1676742193109</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1676742193109</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +320,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="base code setup, county shapes are rendering." />
     <MESSAGE value="add pickable objects" />
     <MESSAGE value="color changing based on slider for threshold" />
     <MESSAGE value="switch is broken, but coloring is functional" />
@@ -335,6 +344,7 @@
     <MESSAGE value="works, but dynamic table rendering is not. &#10;&#10;Not changing tbale values based on the selected values." />
     <MESSAGE value="Functionality complete" />
     <MESSAGE value="add form control" />
-    <option name="LAST_COMMIT_MESSAGE" value="add form control" />
+    <MESSAGE value="Checkboxes working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Checkboxes working" />
   </component>
 </project>

@@ -14,12 +14,17 @@ export function useColor(response){
     const colorArray = ["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"];
     const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
     const colorScale = chroma.scale(colorArray).mode('lch').domain([0,1]);
+    const defaultFeatures = ["auc_of_roc"];
 
     useEffect(() => {
-        const colorValues = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(55);
-        const result = kmeans(response, 55, colorValues);
-        setColoredRegions(result);
+        coloringRequest(defaultFeatures);
     }, []);
+    
+    function coloringRequest(featureSelection){
+        const colorValues = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(55);
+        const result = kmeans(response, 55, colorValues, featureSelection);
+        setColoredRegions(result);
+    }
 
     function colorByFilter(gis_join){
         if (displayedMetric === 'threshold'){
@@ -75,7 +80,8 @@ export function useColor(response){
         setSliderValue: setSliderValue,
         setValidationType: setValidationType,
         setDisplayedMetric: setDisplayedMetric,
-        setSliderValueMetric: setSliderValueMetric
+        setSliderValueMetric: setSliderValueMetric,
+        coloringRequest: coloringRequest
     };
 
     return {colorData, colorManagement};

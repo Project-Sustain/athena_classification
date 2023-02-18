@@ -4,17 +4,20 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 export function CustomCheckbox(props) {
-    const [checked, setChecked] = React.useState([true, false]);
+    const [checked, setChecked] = React.useState([false, false]);
 
     const handleChange1 = (event) => {
+        props.createSelectedFeaturesParent(props.index, event);
         setChecked([event.target.checked, event.target.checked]);
     };
 
     const handleChange2 = (event) => {
+        props.createSelectedFeaturesChildren(props.index, 1);
         setChecked([event.target.checked, checked[1]]);
     };
 
     const handleChange3 = (event) => {
+        props.createSelectedFeaturesChildren(props.index, 0);
         setChecked([checked[0], event.target.checked]);
     };
 

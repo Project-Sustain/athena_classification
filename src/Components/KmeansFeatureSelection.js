@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Paper from '@mui/material/Paper';
+import {Paper, Button, FormControlLabel, Checkbox, Box} from '@mui/material';
 import chroma from "chroma-js";
 import { makeStyles } from "@material-ui/core";
 import {featureMetaData} from "../Constants/FeatureMetaData.js";
 import {CustomCheckbox} from "../Components/CustomCheckbox";
+import kmeans from "../Components/Kmeans";
 
 const useStyles = makeStyles({
     paper: {
@@ -22,8 +20,36 @@ const useStyles = makeStyles({
 });
 
 
-export function KmeansFeatureSelection() {
+const defaultFeatures = [[false, false], [false, false], [false, false], [false, false], [false, false], [false, false], [false, false], [false, false], [false, false], [false, false]];
+
+export function KmeansFeatureSelection({coloringRequest}) {
     const classes = useStyles();
+    const [selectedFeatures, setSelectedFeatures] = useState(defaultFeatures);
+
+    function createSelectedFeaturesParent(index, event){
+        let tempSelectedFeatures = selectedFeatures;
+        tempSelectedFeatures[index] = [event.target.checked, event.target.checked];
+        setSelectedFeatures(tempSelectedFeatures);
+        console.log({selectedFeatures})
+
+    }
+
+    function createSelectedFeaturesChildren(index, precision_or_recall){
+        let tempSelectedFeatures = selectedFeatures;
+        tempSelectedFeatures[index][precision_or_recall] = !tempSelectedFeatures[index][precision_or_recall];
+        setSelectedFeatures(tempSelectedFeatures);
+        console.log({selectedFeatures})
+
+    }
+
+    function colorBasedOnFeatures(){
+        const formattedFeatures = createFormattedFeatures();
+        coloringRequest(formattedFeatures);
+    }
+
+    function createFormattedFeatures(){
+        
+    }
 
 
     return (
@@ -32,9 +58,11 @@ export function KmeansFeatureSelection() {
                 Feature Selection
                 {featureMetaData.map((item, i) => {
                     return (
-                        <CustomCheckbox index={i} label={item}/>
+                        <CustomCheckbox index={i} label={item} createSelectedFeaturesChildren={createSelectedFeaturesChildren}
+                                        createSelectedFeaturesParent={createSelectedFeaturesParent}/>
                     )
                 })}
+                <Button onClick={() => colorBasedOnFeatures()} >Cluster</Button>
             </Paper>
         </div>
     );

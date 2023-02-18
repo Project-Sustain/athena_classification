@@ -170,8 +170,8 @@ function recalculateCentroids(dataSet, labels, k) {
     return newCentroidList;
 }
 
-function createFeatureLists(dataset){
-    let desiredFeatures = ["auc_of_roc", "0.1", "0.3", "0.5"] // Both precision and recall will be used for each threshold value
+function createFeatureLists(dataset, desiredFeatures){
+    // let desiredFeatures = ["auc_of_roc", "0.1", "0.3", "0.5"] // Both precision and recall will be used for each threshold value
     let featureList = [];
     let regionList = [];
 
@@ -214,8 +214,8 @@ function reformatClusters(clusters, regionList, colorValues){
     return reformattedCluster;
 }
 
-function kmeans(dataset, k, colorValues, useNaiveSharding = true) {
-    let dataset_regionList = createFeatureLists(dataset);
+function kmeans(dataset, k, colorValues, desiredFeatures, useNaiveSharding = true) {
+    let dataset_regionList = createFeatureLists(dataset, desiredFeatures);
 
     dataset = dataset_regionList.featureList;
     let regionList = dataset_regionList.regionList;

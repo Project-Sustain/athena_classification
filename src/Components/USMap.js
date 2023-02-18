@@ -154,7 +154,7 @@ export function USMap(props) {
 
     function displayLegendOrFeatureSelection() {
         if (colorData.displayedMetric === "cluster") {
-            return <KmeansFeatureSelection/>;
+            return <KmeansFeatureSelection coloringRequest={colorManagement.coloringRequest}/>;
         }
         else {
             return (
