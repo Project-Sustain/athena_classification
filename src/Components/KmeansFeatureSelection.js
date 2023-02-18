@@ -30,16 +30,12 @@ export function KmeansFeatureSelection({coloringRequest}) {
         let tempSelectedFeatures = selectedFeatures;
         tempSelectedFeatures[index] = [event.target.checked, event.target.checked];
         setSelectedFeatures(tempSelectedFeatures);
-        console.log({selectedFeatures})
-
     }
 
     function createSelectedFeaturesChildren(index, precision_or_recall){
         let tempSelectedFeatures = selectedFeatures;
         tempSelectedFeatures[index][precision_or_recall] = !tempSelectedFeatures[index][precision_or_recall];
         setSelectedFeatures(tempSelectedFeatures);
-        console.log({selectedFeatures})
-
     }
 
     function colorBasedOnFeatures(){
