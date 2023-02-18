@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="Functionality complete">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="feature selection is functional">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ColorLegend.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ColorLegend.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="kass_ImplementStreaming" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,6 +43,9 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2FS8YpOyk7M8ix558RPbTkz3Qt4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -280,7 +283,35 @@
       <option name="project" value="LOCAL" />
       <updated>1676241690845</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add form control">
+      <created>1676248189685</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1676248189685</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Checkboxes working">
+      <created>1676742193109</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1676742193109</updated>
+    </task>
+    <task id="LOCAL-00031" summary="passing state to have kmeansRequest in featureSelection">
+      <created>1676748721740</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1676748721740</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feature selection is functional">
+      <created>1676754713285</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1676754713285</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,10 +330,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="set up deck gl, have shapes rendering" />
-    <MESSAGE value="base code setup, county shapes are rendering." />
-    <MESSAGE value="add pickable objects" />
-    <MESSAGE value="color changing based on slider for threshold" />
     <MESSAGE value="switch is broken, but coloring is functional" />
     <MESSAGE value="it works!!" />
     <MESSAGE value="small changes" />
@@ -324,6 +351,10 @@
     <MESSAGE value="have legend on map and coloring working" />
     <MESSAGE value="works, but dynamic table rendering is not. &#10;&#10;Not changing tbale values based on the selected values." />
     <MESSAGE value="Functionality complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Functionality complete" />
+    <MESSAGE value="add form control" />
+    <MESSAGE value="Checkboxes working" />
+    <MESSAGE value="passing state to have kmeansRequest in featureSelection" />
+    <MESSAGE value="feature selection is functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature selection is functional" />
   </component>
 </project>

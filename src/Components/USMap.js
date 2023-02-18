@@ -9,7 +9,8 @@ import {sample_response} from "../testing/sample_response";
 import {full_response} from "../testing/full_response";
 import {mongoQuery} from "../Utils/Download.ts";
 import {useColor} from "../Hooks/useColor.js";
-import {ColorLegend} from "../Components/ColorLegend"
+import {ColorLegend} from "../Components/ColorLegend";
+import {KmeansFeatureSelection} from "../Components/KmeansFeatureSelection";
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -151,10 +152,9 @@ export function USMap(props) {
         }
     }
 
-    function displayLegend() {
-        console.log(colorData.displayedMetric)
+    function displayLegendOrFeatureSelection() {
         if (colorData.displayedMetric === "cluster") {
-            return null;
+            return <KmeansFeatureSelection coloringRequest={colorManagement.coloringRequest}/>;
         }
         else {
             return (
@@ -192,7 +192,7 @@ export function USMap(props) {
                         </ButtonGroup>
                     </Stack>
                 </Paper>
-                {displayLegend()}
+                {displayLegendOrFeatureSelection()}
             </div>
             </>
         );
