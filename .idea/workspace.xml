@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="add form control">
+      <change afterPath="$PROJECT_DIR$/src/Components/CustomCheckbox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" afterDir="false" />
     </list>
@@ -26,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="kass_ImplementStreaming" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,6 +44,9 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2FS8YpOyk7M8ix558RPbTkz3Qt4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
