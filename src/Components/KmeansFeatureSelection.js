@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Paper, Button, FormControlLabel, Checkbox, Box} from '@mui/material';
 import chroma from "chroma-js";
 import { makeStyles } from "@material-ui/core";
-import {featureMetaData} from "../Constants/FeatureMetaData.js";
+import {featureMetaData, thresholdValues} from "../Constants/FeatureMetaData.js";
 import {CustomCheckbox} from "../Components/CustomCheckbox";
 import kmeans from "../Components/Kmeans";
 
@@ -48,7 +48,24 @@ export function KmeansFeatureSelection({coloringRequest}) {
     }
 
     function createFormattedFeatures(){
-        
+        let formattedFeatures = [];
+        for(let i = 0; i < selectedFeatures.length; i++){
+            if(i === 0 && selectedFeatures[0][0] === true && selectedFeatures[0][1] === true){
+                formattedFeatures.push("auc_of_roc");
+            }
+            else {
+                if (selectedFeatures[i][1] === true) {
+                    formattedFeatures.push([thresholdValues[i - 1], "recall"]);
+
+                }
+                if(selectedFeatures[i][0] === true){
+                    formattedFeatures.push([thresholdValues[i - 1], "precision"]);
+                }
+            }
+
+        }
+
+        return formattedFeatures;
     }
 
 

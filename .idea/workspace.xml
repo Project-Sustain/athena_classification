@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="Checkboxes working">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="passing state to have kmeansRequest in featureSelection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/CustomCheckbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CustomCheckbox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Kmeans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Kmeans.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Constants/FeatureMetaData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constants/FeatureMetaData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -301,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676742193109</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="passing state to have kmeansRequest in featureSelection">
+      <created>1676748721740</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1676748721740</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +326,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add pickable objects" />
     <MESSAGE value="color changing based on slider for threshold" />
     <MESSAGE value="switch is broken, but coloring is functional" />
     <MESSAGE value="it works!!" />
@@ -345,6 +350,7 @@
     <MESSAGE value="Functionality complete" />
     <MESSAGE value="add form control" />
     <MESSAGE value="Checkboxes working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Checkboxes working" />
+    <MESSAGE value="passing state to have kmeansRequest in featureSelection" />
+    <option name="LAST_COMMIT_MESSAGE" value="passing state to have kmeansRequest in featureSelection" />
   </component>
 </project>

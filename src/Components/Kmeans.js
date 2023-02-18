@@ -180,11 +180,10 @@ function createFeatureLists(dataset, desiredFeatures){
         for(let i = 0; i < desiredFeatures.length; i++){
             if(desiredFeatures[i] === "auc_of_roc") {
                 regional_features.push(gis_join);
-                regional_features.push(dataset[gis_join][desiredFeatures[i]]);
+                regional_features.push(dataset[gis_join]["auc_of_roc"]);
             }
             else{
-                regional_features.push(dataset[gis_join][desiredFeatures[i]]["precision"]);
-                regional_features.push(dataset[gis_join][desiredFeatures[i]]["recall"]);
+                regional_features.push(dataset[gis_join][desiredFeatures[i][0]][desiredFeatures[i][1]]);
             }
         }
 

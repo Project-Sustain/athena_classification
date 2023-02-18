@@ -14,7 +14,7 @@ export function useColor(response){
     const colorArray = ["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"];
     const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
     const colorScale = chroma.scale(colorArray).mode('lch').domain([0,1]);
-    const defaultFeatures = ["auc_of_roc"];
+    const defaultFeatures = ["auc_of_roc", ["0.1", "precision"], ["0.1", "recall"], ["0.3", "recall"]];
 
     useEffect(() => {
         coloringRequest(defaultFeatures);
@@ -63,7 +63,7 @@ export function useColor(response){
         return [0,0,0,0];
     }
 
-    const coloringTriggers = [sliderValue, validationType, sliderValueMetric, displayedMetric];
+    const coloringTriggers = [sliderValue, validationType, sliderValueMetric, displayedMetric, coloredRegions];
 
     const colorData = {
         coloredRegions: coloredRegions,
