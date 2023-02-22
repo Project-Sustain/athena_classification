@@ -1,15 +1,16 @@
+import React, {useEffect, useState} from 'react';
+import { makeStyles } from "@material-ui/core"
+import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
+import {request} from "../testing/request";
 
-export function DataQuerier(){
-    const classes = useStyles();
+export function DataQuerier(props){
 
     const [uploadFile, setUploadFile] = useState({})
-    const [responses, setResponses] = useState({});
     const [incompleteResponse, setIncompleteResponse] = useState();
 
     const handleFileSubmission = (event) => {
         setUploadFile(event.target.files[0]);
     }
-    console.log(responses)
 
     async function sendRequest(){
         console.log({request})
@@ -37,7 +38,7 @@ export function DataQuerier(){
             // Return when stream is done
             if (done) {
                 console.log(streamedResults)
-                setResponses(streamedResults);
+                props.setResponse(streamedResults);
                 return streamedResults;
             }
             // Decode current chunk
@@ -68,6 +69,9 @@ export function DataQuerier(){
     }
     
     return (
-        
-    )
+        <>
+            <Button component="label">Upload a file<input type="file" hidden onChange={handleFileSubmission}/></Button>
+            <Button onClick={() => sendRequest()}>Validate Model</Button>
+        </>
+    );
 }

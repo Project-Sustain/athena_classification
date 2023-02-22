@@ -11,6 +11,7 @@ import {mongoQuery} from "../Utils/Download.ts";
 import {useColor} from "../Hooks/useColor.js";
 import {ColorLegend} from "../Components/ColorLegend";
 import {KmeansFeatureSelection} from "../Components/KmeansFeatureSelection";
+import {DataQuerier} from "../Components/DataQuerier";
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -50,6 +51,7 @@ export function USMap(props) {
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
     const {colorData, colorManagement} = useColor(response);
+    const [responses, setResponse] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -104,6 +106,7 @@ export function USMap(props) {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
+    console.log(responses)
     function displayThresholdSlider(){
         return (
             <>
@@ -189,6 +192,7 @@ export function USMap(props) {
                             <Button onClick={() => { colorManagement.setDisplayedMetric("precision") }} >Precision</Button>
                             <Button onClick={() => { colorManagement.setDisplayedMetric("recall") }} >Recall</Button>
                             <Button onClick={() => { colorManagement.setDisplayedMetric("cluster") }} >Cluster</Button>
+                            <DataQuerier setResponse={setResponse}/>
                         </ButtonGroup>
                     </Stack>
                 </Paper>
