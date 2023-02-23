@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="data from backend is being logged in USMap">
-      <change afterPath="$PROJECT_DIR$/src/Hooks/useData.js" afterDir="false" />
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="create useData hook">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676754713285</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="create useData hook">
+      <created>1677118786965</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1677118786965</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,7 +339,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="switch is broken, but coloring is functional" />
     <MESSAGE value="it works!!" />
     <MESSAGE value="small changes" />
     <MESSAGE value="small changes / formatting" />
@@ -357,6 +363,7 @@
     <MESSAGE value="Checkboxes working" />
     <MESSAGE value="passing state to have kmeansRequest in featureSelection" />
     <MESSAGE value="feature selection is functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature selection is functional" />
+    <MESSAGE value="create useData hook" />
+    <option name="LAST_COMMIT_MESSAGE" value="create useData hook" />
   </component>
 </project>

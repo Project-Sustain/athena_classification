@@ -52,7 +52,7 @@ export function USMap(props) {
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
-    const {colorData, colorManagement} = useColor(data);
+    const {colorData, colorManagement} = useColor(data.response);
     const [responses, setResponse] = useState({});
 
     useEffect(() => {

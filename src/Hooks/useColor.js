@@ -16,9 +16,11 @@ export function useColor(response){
     const colorScale = chroma.scale(colorArray).mode('lch').domain([0,1]);
     const defaultFeatures = ["auc_of_roc", ["0.1", "precision"], ["0.1", "recall"], ["0.3", "recall"]];
 
-    useEffect(() => {
-        coloringRequest(defaultFeatures);
-    }, []);
+    // useEffect(() => {
+    //     if(Object.keys(response).length === 0) {
+    //         coloringRequest(defaultFeatures);
+    //     }
+    // }, [response]);
     
     function coloringRequest(featureSelection){
         const colorValues = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(55);
@@ -27,15 +29,27 @@ export function useColor(response){
     }
 
     function colorByFilter(gis_join){
-        if (displayedMetric === 'threshold'){
-            const sliderValueString = sliderValue.toString();
-            return createRGBA(colorScale(response[gis_join][sliderValueString][validationType]));
+        console.log("inside color by filter")
+        console.log({response})
+        if(Object.keys(response).length !== 0) {
+            console.log({response})
+            if (displayedMetric === 'threshold') {
+                const sliderValueString = sliderValue.toString();
+                return createRGBA(colorScale(response[gis_join][sliderValueString][validationType]));
+            } else if (displayedMetric === 'cluster') {
+                return createRGBA(coloredRegions["colored_regions"][gis_join]);
+            }
+            return colorByMetric(gis_join);
         }
-        else if(displayedMetric === 'cluster'){
-            return createRGBA(coloredRegions["colored_regions"][gis_join]);
+        else{
+            console.log("Made it to else")
+            return createRGBA(colorScale(Math.random()));
         }
-        return colorByMetric(gis_join);
     }
+
+    // function colorRandomly(gis_join){
+    //     return createRGBA(Math.random());
+    // }
 
     function createRGBA(value){
         let rgba = chroma(value).rgba();
@@ -63,7 +77,7 @@ export function useColor(response){
         return [0,0,0,0];
     }
 
-    const coloringTriggers = [sliderValue, validationType, sliderValueMetric, displayedMetric, coloredRegions];
+    const coloringTriggers = [sliderValue, validationType, sliderValueMetric, displayedMetric, coloredRegions, response];
 
     const colorData = {
         coloredRegions: coloredRegions,
