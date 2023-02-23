@@ -9,9 +9,10 @@ import {sample_response} from "../testing/sample_response";
 import {full_response} from "../testing/full_response";
 import {mongoQuery} from "../Utils/Download.ts";
 import {useColor} from "../Hooks/useColor.js";
+import {useData} from "../Hooks/useData.js";
 import {ColorLegend} from "../Components/ColorLegend";
 import {KmeansFeatureSelection} from "../Components/KmeansFeatureSelection";
-import {DataQuerier} from "../Components/DataQuerier";
+
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -46,11 +47,12 @@ const useStyles = makeStyles({
 // DeckGL react component
 export function USMap(props) {
     const classes = useStyles();
+    const {data, dataManagement} = useData();
     const [checked, setChecked] = useState(false);
     const [geoData, setGeoData] = useState({});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
-    const {colorData, colorManagement} = useColor(response);
+    const {colorData, colorManagement} = useColor(data);
     const [responses, setResponse] = useState({});
 
     useEffect(() => {
@@ -192,7 +194,8 @@ export function USMap(props) {
                             <Button onClick={() => { colorManagement.setDisplayedMetric("precision") }} >Precision</Button>
                             <Button onClick={() => { colorManagement.setDisplayedMetric("recall") }} >Recall</Button>
                             <Button onClick={() => { colorManagement.setDisplayedMetric("cluster") }} >Cluster</Button>
-                            <DataQuerier setResponse={setResponse}/>
+                            <Button component="label">Upload a file<input type="file" hidden onChange={dataManagement.handleFileSubmission}/></Button>
+                            <Button onClick={() => dataManagement.sendRequest()}>Validate Model</Button>
                         </ButtonGroup>
                     </Stack>
                 </Paper>
