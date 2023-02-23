@@ -53,6 +53,7 @@ export function DataQuerier(props){
                 response = response.substring(response.indexOf('\n') + 1, response.length);
                 streamedResults[obj["gis_join"]] = obj;
                 console.log(obj)
+
             }
 
             // Handle incomplete response chunk

@@ -29,13 +29,12 @@ export function useColor(response){
     }
 
     function colorByFilter(gis_join){
-        console.log("inside color by filter")
         console.log({response})
+
         if(Object.keys(response).length !== 0) {
-            console.log({response})
             if (displayedMetric === 'threshold') {
                 const sliderValueString = sliderValue.toString();
-                return createRGBA(colorScale(response[gis_join][sliderValueString][validationType]));
+                return createRGBA(colorScale(response[gis_join]["response"][sliderValueString][validationType]));
             } else if (displayedMetric === 'cluster') {
                 return createRGBA(coloredRegions["colored_regions"][gis_join]);
             }
@@ -60,7 +59,7 @@ export function useColor(response){
     function colorByMetric(gis_join){
         if (displayedMetric === 'precision') {
             for(let i = 0; i < thresholdValues.length; i++) {
-                const value = response[gis_join][thresholdValues[i]]['precision'];
+                const value = response[gis_join]["response"][thresholdValues[i]]['precision'];
                 if(value >= sliderValueMetric) {
                     return createRGBA(colorScale(parseFloat(thresholdValues[i])));
                 }
@@ -68,7 +67,7 @@ export function useColor(response){
         }
         else if(displayedMetric === 'recall'){
             for(let i = 0; i < thresholdValues.length; i++) {
-                const value = response[gis_join][thresholdValues[i]]['recall'];
+                const value = response[gis_join]["response"][thresholdValues[i]]['recall'];
                 if(value <= sliderValueMetric) {
                     return createRGBA(colorScale(parseFloat(thresholdValues[i])));
                 }
