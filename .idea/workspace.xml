@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="feature selection is functional">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="trying to restructure data. Commiting to change branches.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/KmeansFeatureSelection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Kmeans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Kmeans.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="kass_ImplementStreaming" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,6 +88,7 @@
       <workItem from="1666624106529" duration="2883000" />
       <workItem from="1674420884187" duration="6192000" />
       <workItem from="1675282510195" duration="28359000" />
+      <workItem from="1677260885676" duration="2060000" />
     </task>
     <task id="LOCAL-00001" summary="testing commits">
       <created>1664559535662</created>
