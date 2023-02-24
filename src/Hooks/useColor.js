@@ -40,7 +40,6 @@ export function useColor(response){
             }
             return colorByMetric(gis_join);
         }
-        console.log("Made it to else")
         return createRGBA(colorScale(Math.random()));
     }
 

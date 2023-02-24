@@ -38,13 +38,9 @@ export function useData({geoData, setGeoData}){
             const { done, value } = await reader.read();
             // Return when stream is done
             if (done) {
-                console.log("Streaming Results: ")
-                console.log({streamedResults})
-                console.log(geoData)
                 let filteredData = geoData.filter(x => Object.keys(streamedResults).includes(x['GISJOIN']));
                 setGeoData(filteredData);
                 setResponse(streamedResults);
-                console.log({geoData})
                 return streamedResults;
             }
             // Decode current chunk
@@ -72,7 +68,6 @@ export function useData({geoData, setGeoData}){
 
         }
     }
-    console.log(Object.keys(response).length)
     const data = {
         response: response
     }
