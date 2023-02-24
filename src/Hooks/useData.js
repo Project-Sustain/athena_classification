@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core"
 import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import {request} from "../testing/request";
 
-export function useData(){
+export function useData({geoData, setGeoData}){
 
     const [uploadFile, setUploadFile] = useState({})
     const [incompleteResponse, setIncompleteResponse] = useState();
@@ -38,8 +38,13 @@ export function useData(){
             const { done, value } = await reader.read();
             // Return when stream is done
             if (done) {
-                console.log(streamedResults)
+                console.log("Streaming Results: ")
+                console.log({streamedResults})
+                console.log(geoData)
+                let filteredData = geoData.filter(x => Object.keys(streamedResults).includes(x['GISJOIN']));
+                setGeoData(filteredData);
                 setResponse(streamedResults);
+                console.log({geoData})
                 return streamedResults;
             }
             // Decode current chunk
@@ -52,8 +57,7 @@ export function useData(){
                 const parsedResponse = response.substring(0, response.indexOf('\n'));
                 const obj = JSON.parse(parsedResponse);
                 response = response.substring(response.indexOf('\n') + 1, response.length);
-                streamedResults[obj["gis_join"]] = obj;
-                console.log(obj)
+                streamedResults[obj["gis_join"]] = JSON.parse(obj["response"]);
             }
 
             // Handle incomplete response chunk
@@ -68,7 +72,7 @@ export function useData(){
 
         }
     }
-
+    console.log(Object.keys(response).length)
     const data = {
         response: response
     }

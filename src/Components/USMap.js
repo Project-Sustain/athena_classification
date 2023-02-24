@@ -47,13 +47,12 @@ const useStyles = makeStyles({
 // DeckGL react component
 export function USMap(props) {
     const classes = useStyles();
-    const {data, dataManagement} = useData();
     const [checked, setChecked] = useState(false);
     const [geoData, setGeoData] = useState({});
+    const {data, dataManagement} = useData({geoData, setGeoData});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
     const {colorData, colorManagement} = useColor(data.response);
-    const [responses, setResponse] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -74,19 +73,6 @@ export function USMap(props) {
     useEffect(() => {
         setLoading(Object.keys(geoData).length === 0);
     }, [geoData]);
-
-    useEffect(() => {
-        if(Object.keys(geoData).length !== 0){
-            // TODO: Change this below filtering logic when streaming in real response
-            console.log({geoData})
-            let filteredData = geoData.filter(x => Object.keys(data.response).includes(x['GISJOIN']))
-            console.log({filteredData})
-            setGeoData(filteredData)
-        }
-        else {
-            console.log("filtering the response didn't work");
-        }
-    }, [data.response])
 
     const layers = [
         new GeoJsonLayer({
@@ -121,7 +107,6 @@ export function USMap(props) {
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
 
-    console.log(responses)
     function displayThresholdSlider(){
         return (
             <>
