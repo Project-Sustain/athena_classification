@@ -29,26 +29,33 @@ export function useColor(response){
     }
 
     function colorByFilter(gis_join){
-        console.log({response})
-
+        if("G3400110" === gis_join || "G2901850" === gis_join || "G1701290" === gis_join || "G3700810" === gis_join){
+            return [250, 250, 250, 250];
+        }
         if(Object.keys(response).length !== 0) {
             if (displayedMetric === 'threshold') {
                 const sliderValueString = sliderValue.toString();
-                return createRGBA(colorScale(response[gis_join]["response"][sliderValueString][validationType]));
-            } else if (displayedMetric === 'cluster') {
-                return createRGBA(coloredRegions["colored_regions"][gis_join]);
+                console.log(gis_join)
+                let obj = response[gis_join]["response"]
+                obj = JSON.parse(obj)
+                const color = createRGBA(colorScale(obj[sliderValueString][validationType]));
+                return color;
             }
-            return colorByMetric(gis_join);
+            else {
+                return [225, 225, 225, 225];
+
+            }
+            //     } else if (displayedMetric === 'cluster') {
+            //         return createRGBA(coloredRegions["colored_regions"][gis_join]);
+            //     }
+            //     return colorByMetric(gis_join);
+            // }
         }
         else{
             console.log("Made it to else")
             return createRGBA(colorScale(Math.random()));
         }
     }
-
-    // function colorRandomly(gis_join){
-    //     return createRGBA(Math.random());
-    // }
 
     function createRGBA(value){
         let rgba = chroma(value).rgba();

@@ -75,6 +75,19 @@ export function USMap(props) {
         setLoading(Object.keys(geoData).length === 0);
     }, [geoData]);
 
+    useEffect(() => {
+        if(Object.keys(geoData).length !== 0){
+            // TODO: Change this below filtering logic when streaming in real response
+            console.log({geoData})
+            let filteredData = geoData.filter(x => Object.keys(data.response).includes(x['GISJOIN']))
+            console.log({filteredData})
+            setGeoData(filteredData)
+        }
+        else {
+            console.log("filtering the response didn't work");
+        }
+    }, [data.response])
+
     const layers = [
         new GeoJsonLayer({
             id: 'geolayer',

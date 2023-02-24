@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="request is working, response is formatted wrong">
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="trying to restructure data. Commiting to change branches.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/DataQuerier.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/DataQuerier.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/USMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/USMap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
