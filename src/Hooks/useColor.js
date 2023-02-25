@@ -10,6 +10,7 @@ export function useColor(response){
     const [validationType, setValidationType] = useState("recall");
     const [displayedMetric, setDisplayedMetric] = useState("threshold");
     const [sliderValueMetric, setSliderValueMetric] = useState(0.5);
+    const [returnedResponse, setReturnedResponse] = useState(false);
 
     const colorArray = ["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"];
     const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
@@ -21,6 +22,10 @@ export function useColor(response){
             coloringRequest(defaultFeatures);
         }
     }, [response]);
+
+    useEffect(() => {
+            setReturnedResponse(Object.keys(response).length !== 0);
+    }, [response]);
     
     function coloringRequest(featureSelection){
         const colorValues = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(55);
@@ -29,7 +34,7 @@ export function useColor(response){
     }
 
     function colorByFilter(gis_join){
-        if(Object.keys(response).length !== 0) {
+        if(returnedResponse) {
             if (displayedMetric === 'threshold') {
                 const sliderValueString = sliderValue.toString();
                 const color = createRGBA(colorScale(response[gis_join][sliderValueString][validationType]));
