@@ -16,7 +16,7 @@ export function useColor(response){
     const thresholdValues = ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"];
     const colorScale = chroma.scale(colorArray).mode('lch').domain([0,1]);
     const defaultFeatures = ["auc_of_roc", ["0.1", "precision"], ["0.1", "recall"], ["0.3", "recall"]];
-    const highlightColor = "fb5607";
+    const highlightColor = "3955B8";
 
     useEffect(() => {
         coloringRequest(defaultFeatures);
@@ -27,7 +27,7 @@ export function useColor(response){
     }, [displayedMetric])
     
     function coloringRequest(featureSelection){
-        const colorValues = chroma.scale(['#ff6d93','#fafa6e','#2A4858']).mode('lch').colors(55);
+        const colorValues = chroma.scale(["3955B8","C6C5C2"]).colors(55);
         const result = kmeans(response, 55, colorValues, featureSelection);
         setColoredRegions(result);
     }
@@ -43,9 +43,9 @@ export function useColor(response){
         return colorByMetric(gis_join);
     }
 
-    function createRGBA(value){
+    function createRGBA(value, opacity = 225){
         let rgba = chroma(value).rgba();
-        rgba[rgba.length - 1] = 225;
+        rgba[rgba.length - 1] = opacity;
         return rgba;
     }
 
@@ -54,13 +54,13 @@ export function useColor(response){
             const chosenColor = coloredRegions["colored_regions"][clickedRegion["object"]["GISJOIN"]];
 
             if(coloredRegions["colored_regions"][gis_join] === chosenColor){
-                return createRGBA(highlightColor);
+                return createRGBA(highlightColor, 250);
             }
 
-            return createRGBA(coloredRegions["colored_regions"][gis_join]);
+            return createRGBA(coloredRegions["colored_regions"][gis_join], 100);
         }
         else{
-            return createRGBA(coloredRegions["colored_regions"][gis_join]);
+            return createRGBA(coloredRegions["colored_regions"][gis_join], 100);
         }
     }
 
