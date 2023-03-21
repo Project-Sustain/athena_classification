@@ -10,6 +10,7 @@ export function useData({geoData, setGeoData, setIsData}){
     const [response, setResponse] = useState({});
 
     const handleFileSubmission = (event) => {
+        console.log(event)
         setUploadFile(event.target.files[0]);
     }
 
