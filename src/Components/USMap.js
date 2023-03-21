@@ -49,7 +49,8 @@ export function USMap(props) {
     const classes = useStyles();
     const [checked, setChecked] = useState(false);
     const [geoData, setGeoData] = useState({});
-    const {data, dataManagement} = useData({geoData, setGeoData});
+    const [isData, setIsData] = useState(false);
+    const {data, dataManagement} = useData({geoData, setGeoData, setIsData});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
     const {colorData, colorManagement} = useColor(data.response);
@@ -154,6 +155,31 @@ export function USMap(props) {
             );
         }
     }
+    function displayRequestOrMetrics(){
+        if(!isData){
+            return (
+                <>
+                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                        <Button component="label">Upload a file<input type="file" hidden onChange={dataManagement.handleFileSubmission}/></Button>
+                        <Button onClick={() => dataManagement.sendRequest()}>Validate Model</Button>
+                    </ButtonGroup>
+                </>
+            );
+        }
+        else{
+            return (
+                <>
+                    {displayValidationSlider()}
+                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                        <Button onClick={() => { colorManagement.setDisplayedMetric("threshold") }} >Threshold</Button>
+                        <Button onClick={() => { colorManagement.setDisplayedMetric("precision") }} >Precision</Button>
+                        <Button onClick={() => { colorManagement.setDisplayedMetric("recall") }} >Recall</Button>
+                        <Button onClick={() => { colorManagement.setDisplayedMetric("cluster") }} >Cluster</Button>
+                    </ButtonGroup>
+                </>
+            );
+        }
+    }
 
     function displayLegendOrFeatureSelection() {
         if (colorData.displayedMetric === "cluster") {
@@ -186,15 +212,7 @@ export function USMap(props) {
             <div className={classes.root}>
                 <Paper elevation={3} className={classes.paper} >
                     <Stack direction='column' justifyContent='center' alignItems='center'>
-                        {displayValidationSlider()}
-                        <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                            <Button onClick={() => { colorManagement.setDisplayedMetric("threshold") }} >Threshold</Button>
-                            <Button onClick={() => { colorManagement.setDisplayedMetric("precision") }} >Precision</Button>
-                            <Button onClick={() => { colorManagement.setDisplayedMetric("recall") }} >Recall</Button>
-                            <Button onClick={() => { colorManagement.setDisplayedMetric("cluster") }} >Cluster</Button>
-                            <Button component="label">Upload a file<input type="file" hidden onChange={dataManagement.handleFileSubmission}/></Button>
-                            <Button onClick={() => dataManagement.sendRequest()}>Validate Model</Button>
-                        </ButtonGroup>
+                        {displayRequestOrMetrics()}
                     </Stack>
                 </Paper>
                 {displayLegendOrFeatureSelection()}

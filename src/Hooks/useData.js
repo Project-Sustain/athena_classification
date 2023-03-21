@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core"
 import {Paper, CircularProgress, Box, Slider, Switch, Typography, Stack, Button, ButtonGroup} from "@mui/material";
 import {request} from "../testing/request";
 
-export function useData({geoData, setGeoData}){
+export function useData({geoData, setGeoData, setIsData}){
 
     const [uploadFile, setUploadFile] = useState({})
     const [incompleteResponse, setIncompleteResponse] = useState();
@@ -41,6 +41,7 @@ export function useData({geoData, setGeoData}){
                 let filteredData = geoData.filter(x => Object.keys(streamedResults).includes(x['GISJOIN']));
                 setGeoData(filteredData);
                 setResponse(streamedResults);
+                setIsData(true);
                 return streamedResults;
             }
             // Decode current chunk
