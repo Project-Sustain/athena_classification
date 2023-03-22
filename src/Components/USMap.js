@@ -86,7 +86,7 @@ export function USMap(props) {
                 getFillColor: colorData.coloringTriggers
             },
             pickable: true,
-            onClick: info => setClickInfo(info)
+            onClick: info => colorManagement.setClickedRegion(info)
         })
     ]
 

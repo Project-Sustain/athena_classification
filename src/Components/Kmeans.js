@@ -211,7 +211,6 @@ function reformatClusters(clusters, regionList, colorValues){
             }
         }
     }
-
     return reformattedCluster;
 }
 
