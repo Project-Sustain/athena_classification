@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="fixed bug&#10;&#10;Still so slowwwww">
+=======
     <list default="true" id="2a2d3a2f-f6df-405d-8102-761f94da1718" name="Changes" comment="trying to restructure data. Commiting to change branches.">
+>>>>>>> main
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hooks/useColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useColor.js" afterDir="false" />
     </list>
@@ -56,7 +60,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/testing" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -66,6 +70,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/testing" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -312,7 +317,49 @@
       <option name="project" value="LOCAL" />
       <updated>1676754713285</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="create useData hook">
+      <created>1677118786965</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1677118786965</updated>
+    </task>
+    <task id="LOCAL-00034" summary="request is working, response is formatted wrong">
+      <created>1677122755223</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1677122755225</updated>
+    </task>
+    <task id="LOCAL-00035" summary="coloring for threshold with the streamed response is technically working. &#10;&#10;&#10;For some reason the gisjoins are blowing shit up .">
+      <created>1677272968903</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1677272968903</updated>
+    </task>
+    <task id="LOCAL-00036" summary="clustering works???">
+      <created>1677282385105</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1677282385105</updated>
+    </task>
+    <task id="LOCAL-00037" summary="remove console.log statements">
+      <created>1677282905143</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1677282905145</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fixed bug&#10;&#10;Still so slowwwww">
+      <created>1677283684123</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1677283684124</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,12 +378,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="switch is broken, but coloring is functional" />
-    <MESSAGE value="it works!!" />
-    <MESSAGE value="small changes" />
-    <MESSAGE value="small changes / formatting" />
-    <MESSAGE value="try new coloring schemes&#10;&#10;This was a bit of a failure. Need to try wrapping it in a them like Matt suggested." />
-    <MESSAGE value="Kmeans working" />
     <MESSAGE value="reformat result data from kmeans clustering." />
     <MESSAGE value="coloring is functional for kmeans" />
     <MESSAGE value="change placement of control panel&#10;&#10;I also cleaned up several other files." />
@@ -356,6 +397,12 @@
     <MESSAGE value="Checkboxes working" />
     <MESSAGE value="passing state to have kmeansRequest in featureSelection" />
     <MESSAGE value="feature selection is functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature selection is functional" />
+    <MESSAGE value="create useData hook" />
+    <MESSAGE value="request is working, response is formatted wrong" />
+    <MESSAGE value="coloring for threshold with the streamed response is technically working. &#10;&#10;&#10;For some reason the gisjoins are blowing shit up ." />
+    <MESSAGE value="clustering works???" />
+    <MESSAGE value="remove console.log statements" />
+    <MESSAGE value="fixed bug&#10;&#10;Still so slowwwww" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug&#10;&#10;Still so slowwwww" />
   </component>
 </project>

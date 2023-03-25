@@ -10,6 +10,7 @@ export function useColor(response){
     const [validationType, setValidationType] = useState("recall");
     const [displayedMetric, setDisplayedMetric] = useState("threshold");
     const [sliderValueMetric, setSliderValueMetric] = useState(0.5);
+    const [returnedResponse, setReturnedResponse] = useState(false);
     const [clickedRegion, setClickedRegion] = useState({});
 
     const colorArray = ["red","ff595e","ffca3a","8ac926","1982c4","6a4c93"];
@@ -18,9 +19,12 @@ export function useColor(response){
     const defaultFeatures = ["auc_of_roc", ["0.1", "precision"], ["0.1", "recall"], ["0.3", "recall"]];
     const highlightColor = "3955B8";
 
+    // useEffect(() => {
+    //     coloringRequest(defaultFeatures);
+    // }, []);
     useEffect(() => {
-        coloringRequest(defaultFeatures);
-    }, []);
+        setReturnedResponse(Object.keys(response).length !== 0);
+    }, [response]);
 
     useEffect(() =>{
         setClickedRegion({});
@@ -33,14 +37,18 @@ export function useColor(response){
     }
 
     function colorByFilter(gis_join){
-        if (displayedMetric === 'threshold'){
-            const sliderValueString = sliderValue.toString();
-            return createRGBA(colorScale(response[gis_join][sliderValueString][validationType]));
+        if(returnedResponse) {
+            if (displayedMetric === 'threshold') {
+                const sliderValueString = sliderValue.toString();
+                const color = createRGBA(colorScale(response[gis_join][sliderValueString][validationType]));
+                return color;
+            }
+            else if (displayedMetric === 'cluster') {
+                return colorByCluster(gis_join);;
+            }
+            return colorByMetric(gis_join);
         }
-        else if(displayedMetric === 'cluster'){
-            return colorByCluster(gis_join);
-        }
-        return colorByMetric(gis_join);
+        return createRGBA(colorScale(Math.random()));
     }
 
     function createRGBA(value, opacity = 225){
@@ -83,6 +91,7 @@ export function useColor(response){
         }
         return [0,0,0,0];
     }
+
 
     const coloringTriggers = [sliderValue, validationType, sliderValueMetric, displayedMetric, coloredRegions, clickedRegion];
 

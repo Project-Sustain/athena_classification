@@ -178,8 +178,10 @@ function createFeatureLists(dataset, desiredFeatures){
     for (const gis_join in dataset){
         let regional_features = [];
         for(let i = 0; i < desiredFeatures.length; i++){
-            if(desiredFeatures[i] === "auc_of_roc") {
+            if(i === 0){
                 regional_features.push(gis_join);
+            }
+            if(desiredFeatures[i] === "auc_of_roc") {
                 regional_features.push(dataset[gis_join]["auc_of_roc"]);
             }
             else{
