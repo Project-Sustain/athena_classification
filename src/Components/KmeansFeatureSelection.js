@@ -68,14 +68,14 @@ export function KmeansFeatureSelection({coloringRequest}) {
     return (
         <div>
             <Paper className={classes.paper} elevation={3}>
-                Feature Selection
+                <strong>Feature Selection</strong>
                 {featureMetaData.map((item, i) => {
                     return (
                         <CustomCheckbox index={i} label={item} createSelectedFeaturesChildren={createSelectedFeaturesChildren}
                                         createSelectedFeaturesParent={createSelectedFeaturesParent}/>
                     )
                 })}
-                <Button onClick={() => colorBasedOnFeatures()} >Cluster</Button>
+                <Button onClick={() => colorBasedOnFeatures()}>Cluster</Button>
             </Paper>
         </div>
     );

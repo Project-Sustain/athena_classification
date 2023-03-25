@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     },
     paper: {
         padding: 15,
-        width: "40vw",
+        width: "33vw",
         position: "absolute",
         top:"10px",
         right: "10px"
@@ -53,6 +53,7 @@ export function USMap(props) {
     const {data, dataManagement} = useData({geoData, setGeoData, setIsData});
     const [loading, setLoading] = useState(true);
     const [clickInfo, setClickInfo] = useState({});
+    const [currentTab, setCurrentTab] = useState(0);
     const {colorData, colorManagement} = useColor(data.response);
 
     useEffect(() => {
@@ -104,6 +105,14 @@ export function USMap(props) {
         colorManagement.setValidationType(newValidationType);
     }
 
+    const tabSelection = (index, filterName) => {
+        setCurrentTab(index);
+        colorManagement.setDisplayedMetric(filterName);
+    } 
+    const getButtonVariant = (index) => {
+        return currentTab === index ? 'contained' : 'outlined';
+    }
+
     function formatMetricName(name){
         return name.charAt(0).toUpperCase() + name.slice(1);
     }
@@ -111,14 +120,14 @@ export function USMap(props) {
     function displayThresholdSlider(){
         return (
             <>
-                <Typography align='center'>Threshold: {colorData.sliderValue}</Typography>
+                <Typography align='center'><strong>Threshold:</strong> {colorData.sliderValue}</Typography>
                 <Stack direction='row' spacing={1} alignItems='center'>
-                    <Typography>Recall</Typography>
+                    <Typography variant='subtitle2'>Recall</Typography>
                     <Switch
                         checked={checked}
                         onChange={onChangeSwitch}
                     />
-                    <Typography>Precision</Typography>
+                    <Typography variant='subtitle2'>Precision</Typography>
                 </Stack>
                 <Slider
                     onChange={handleSliderChange}
@@ -143,7 +152,7 @@ export function USMap(props) {
             return (
                 <>
                     <Typography
-                        align='center'>{formatMetricName(colorData.displayedMetric)}: {colorData.sliderValueMetric.toFixed(2)}</Typography>
+                        align='center'><strong>{formatMetricName(colorData.displayedMetric)}:</strong> {colorData.sliderValueMetric.toFixed(2)}</Typography>
                     <Slider
                         onChange={handleSliderChangeMetric}
                         value={colorData.sliderValueMetric}
@@ -159,7 +168,7 @@ export function USMap(props) {
         if(!isData){
             return (
                 <>
-                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                    <ButtonGroup fullWidth>
                         <Button component="label">Upload a file<input type="file" hidden onChange={dataManagement.handleFileSubmission}/></Button>
                         <Button onClick={() => dataManagement.sendRequest()}>Validate Model</Button>
                     </ButtonGroup>
@@ -170,11 +179,11 @@ export function USMap(props) {
             return (
                 <>
                     {displayValidationSlider()}
-                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                        <Button onClick={() => { colorManagement.setDisplayedMetric("threshold") }} >Threshold</Button>
-                        <Button onClick={() => { colorManagement.setDisplayedMetric("precision") }} >Precision</Button>
-                        <Button onClick={() => { colorManagement.setDisplayedMetric("recall") }} >Recall</Button>
-                        <Button onClick={() => { colorManagement.setDisplayedMetric("cluster") }} >Cluster</Button>
+                    <ButtonGroup fullWidth>
+                        <Button onClick={() => { tabSelection(0, "threshold") }} variant={getButtonVariant(0)}>Threshold</Button>
+                        <Button onClick={() => { tabSelection(1, "precision") }} variant={getButtonVariant(1)} >Precision</Button>
+                        <Button onClick={() => { tabSelection(2, "recall") }} variant={getButtonVariant(2)}>Recall</Button>
+                        <Button onClick={() => { tabSelection(3, "cluster") }} variant={getButtonVariant(3)}>Cluster</Button>
                     </ButtonGroup>
                 </>
             );

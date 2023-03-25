@@ -69,8 +69,8 @@ export function ColorLegend({displayedMetric, validationType}) {
                 <Table sx={{minWidth: 200}} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell className={classes.leftCell} align="center">{visualizedMetric}</TableCell>
-                            <TableCell className={classes.rightCell} align="center">Values</TableCell>
+                            <TableCell className={classes.leftCell} align="center">{<strong>{visualizedMetric}</strong>}</TableCell>
+                            <TableCell className={classes.rightCell} align="center"><strong></strong></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
